@@ -1,6 +1,6 @@
 const routes = {
   '/': 'views/homepage.html',
-  '#/play': 'views/play.html',
+  '#/player-vs-player': 'views/player-vs-player.html',
   '#/play-online': 'views/play-online.html',
   '#/create-a-tournament': 'views/create-a-tournament.html',
 };
