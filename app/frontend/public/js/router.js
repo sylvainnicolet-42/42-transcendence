@@ -1,13 +1,23 @@
 const routes = {
-  '/': 'Homepage',
-  '/search-a-game': 'Search a game',
-  '/create-a-tournament': 'Create a tournament',
-  '/join-a-tournament': 'Join a tournament',
+  '/': 'views/homepage.html',
+  '/search-a-game': 'views/search-a-game.html',
+  '/create-a-tournament': 'views/create-a-tournament.html',
+  '/join-a-tournament': 'views/join-a-tournament.html',
 };
 
 function render() {
   const path = window.location.pathname;
-  document.getElementById('app').innerHTML = routes[path] || '404 Page Not Found';
+  const route = routes[path];
+
+  if (route) {
+    fetch(route)
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('app').innerHTML = html;
+      });
+  } else {
+    document.getElementById('app').innerHTML = '404 Page Not Found';
+  }
 }
 
 function initRouter() {
