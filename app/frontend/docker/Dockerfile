@@ -1,7 +1,6 @@
 FROM debian:latest
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-    g++ \
     nginx \
     vim \
     && rm -rf /var/lib/apt/lists/* # Delete cache
