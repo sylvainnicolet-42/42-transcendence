@@ -1,12 +1,12 @@
 const routes = {
   '/': 'views/homepage.html',
-  '/search-a-game': 'views/search-a-game.html',
-  '/create-a-tournament': 'views/create-a-tournament.html',
-  '/join-a-tournament': 'views/join-a-tournament.html',
+  '#/play': 'views/play.html',
+  '#/play-online': 'views/play-online.html',
+  '#/create-a-tournament': 'views/create-a-tournament.html',
 };
 
 function render() {
-  const path = window.location.pathname;
+  const path = window.location.hash || '/';
   const route = routes[path];
 
   if (route) {
@@ -21,21 +21,16 @@ function render() {
 }
 
 function initRouter() {
+  window.addEventListener('hashchange', render); // Render the page when the hash changes
 
-  window.addEventListener('popstate', render); // Handle back,forward button
-
-  // Wait for DOM content to load
-  document.addEventListener('DOMContentLoaded', () => {
-    document.body.addEventListener('click', e => {
-      if (e.target.matches('[data-link]')) {
-        e.preventDefault(); // Prevent browser from following the link
-        history.pushState(null, '', e.target.href); // Change the URL without refreshing the page
-        render();
-      }
-    });
-
-    render();
+  document.body.addEventListener('click', e => {
+    if (e.target.matches('[data-link]')) {
+      e.preventDefault(); // Prevent browser from following the link
+      window.location.hash = e.target.getAttribute('href').substring(1); // Remove the # character
+    }
   });
+
+  render();
 }
 
 export { initRouter };
