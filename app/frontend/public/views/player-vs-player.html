@@ -4,18 +4,20 @@
     <p>Play against another player on the same computer.</p>
   </div>
   <div class="col-lg-6 offset-lg-3">
-    <div class="card text-center">
+    <div class="card text-start">
       <div class="card-body">
         <form>
           <div class="mb-3">
-            <label for="player_1" class="form-label">Player 1</label>
+            <label for="player_1" class="form-label mb-1">Player 1</label>
             <input type="text" class="form-control" id="player_1" name="player_1" placeholder="Username" required>
           </div>
           <div class="mb-3">
-            <label for="player_2" class="form-label">Player 2</label>
+            <label for="player_2" class="form-label mb-1">Player 2</label>
             <input type="text" class="form-control" id="player_2" name="player_2" placeholder="Username" required>
           </div>
-          <button type="submit" class="btn btn-primary">Play</button>
+          <div class="d-grid d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-primary">Play</button>
+          </div>
         </form>
       </div>
     </div>
