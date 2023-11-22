@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  nodejs:
+    image: transcendence/frontend
+    container_name: transcendence_frontend
+    build:
+      context: app/frontend/docker
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./app/frontend:/home/transcendence
