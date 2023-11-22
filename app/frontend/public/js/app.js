@@ -1,3 +1,3 @@
-import router from './router.js';
+import { initRouter } from './router.js';
 
-router();
+initRouter();
