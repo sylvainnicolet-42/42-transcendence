@@ -4,8 +4,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     g++ \
     nginx \
     vim \
-    nodejs \
-    npm \
     && rm -rf /var/lib/apt/lists/* # Delete cache
 
 # Copy your application files and Nginx configuration
