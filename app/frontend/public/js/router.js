@@ -4,6 +4,8 @@ const routes = {
   '#/player-vs-computer': 'views/player-vs-computer.html',
   '#/player-vs-online': 'views/player-vs-online.html',
   '#/create-a-tournament': 'views/create-a-tournament.html',
+  '#/login': 'views/login.html',
+  '#/register': 'views/register.html',
 };
 
 function render() {
