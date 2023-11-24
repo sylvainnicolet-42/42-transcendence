@@ -1,4 +1,6 @@
-const POKEMON_API = 'https://pokeapi.co/api/v2/pokemon/';
+import config from '../../config.js';
+
+const POKEMON_API = config.POKEMON_API;
 
 export default class PokemonService {
   static async getFirstGeneration() {
