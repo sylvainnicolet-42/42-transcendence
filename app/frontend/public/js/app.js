@@ -1,3 +1,3 @@
-import { initRouter } from './router.js';
+import { initRouter } from './router/router.js';
 
 initRouter();

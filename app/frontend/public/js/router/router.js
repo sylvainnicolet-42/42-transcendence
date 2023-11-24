@@ -1,24 +1,20 @@
-const routes = {
-  '/': 'views/homepage.html',
-  '#/player-vs-player': 'views/player-vs-player.html',
-  '#/player-vs-computer': 'views/player-vs-computer.html',
-  '#/player-vs-online': 'views/player-vs-online.html',
-  '#/create-a-tournament': 'views/create-a-tournament.html',
-  '#/login': 'views/login.html',
-  '#/register': 'views/register.html',
-  '#/profile': 'views/auth/profile.html',
-  '#/profile/edit': 'views/auth/edit-profile.html',
-};
+import routes from './routes.js';
 
 function render() {
   const path = window.location.hash || '/';
   const route = routes[path];
 
   if (route) {
-    fetch(route)
+    fetch(route.view)
       .then(response => response.text())
       .then(html => {
         document.getElementById('app').innerHTML = html;
+        if (route.script) {
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.src = route.script;
+          document.head.appendChild(script);
+        }
       });
   } else {
     document.getElementById('app').innerHTML = '404 Page Not Found';
