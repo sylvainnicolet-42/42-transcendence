@@ -6,6 +6,8 @@ const routes = {
   '#/create-a-tournament': 'views/create-a-tournament.html',
   '#/login': 'views/login.html',
   '#/register': 'views/register.html',
+  '#/profile': 'views/auth/profile.html',
+  '#/profile/edit': 'views/auth/edit-profile.html',
 };
 
 function render() {
