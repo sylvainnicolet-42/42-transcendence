@@ -4,9 +4,9 @@ services:
     image: transcendence/frontend
     container_name: transcendence_frontend
     build:
-      context: app/frontend/docker
+      context: app/frontend/
       dockerfile: Dockerfile
     ports:
       - "80:80"
     volumes:
-      - ./app/frontend:/home/transcendence
+      - ./app/frontend/public:/home/transcendence/public
