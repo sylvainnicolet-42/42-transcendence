@@ -11,6 +11,7 @@ function render() {
         document.getElementById('app').innerHTML = html;
         if (route.script) {
           const script = document.createElement('script');
+          script.type = 'module';
           script.src = route.script;
           document.head.appendChild(script);
         }
