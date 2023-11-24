@@ -16,6 +16,10 @@ WORKDIR /home/transcendence
 
 ENV PYTHONBUFFERED 1
 
+RUN python3 -m venv venv
+RUN . venv/bin/activate
+RUN venv/bin/pip3 install -r src/requirements.txt
+
 EXPOSE 80
 
 CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
