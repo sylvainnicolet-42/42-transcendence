@@ -30,4 +30,8 @@ export default {
     view: 'views/pokemons.html',
     script: 'js/views/pokemons.js',
   },
+  '#/django': {
+    view: 'views/django.html',
+    script: 'js/views/django.js',
+  },
 }
