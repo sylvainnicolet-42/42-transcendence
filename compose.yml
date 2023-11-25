@@ -48,6 +48,14 @@ services:
       timeout: 5s
       retries: 5
 
+  mail:
+    image: mailhog/mailhog
+    container_name: transcendence_mail
+    ports:
+      - "8025:8025"
+    networks:
+      - transcendance_network
+
 networks:
   transcendance_network:
     driver: bridge
