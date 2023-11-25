@@ -8,8 +8,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    networks:
+      - transcendance_network
     volumes:
       - ./app/frontend/public:/home/transcendence/public
+
   backend:
     image: transcendence/backend
     container_name: transcendence_backend
@@ -18,5 +21,33 @@ services:
       dockerfile: Dockerfile
     ports:
       - "81:80"
+    networks:
+      - transcendance_network
     volumes:
       - ./app/backend/src:/home/transcendence/src
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    container_name: transcendence_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - transcendance_network
+    volumes:
+      - ./app/db/data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+networks:
+  transcendance_network:
+    driver: bridge
