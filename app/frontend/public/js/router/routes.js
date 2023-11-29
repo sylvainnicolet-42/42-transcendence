@@ -26,10 +26,6 @@ export default {
   '#/profile/edit': {
     view: 'views/auth/edit-profile.html',
   },
-  '#/pokemons': {
-    view: 'views/pokemons.html',
-    script: 'js/views/pokemons.js',
-  },
   '#/django': {
     view: 'views/django.html',
     script: 'js/views/django.js',

@@ -9,7 +9,7 @@ make docker-build
 
 To run the docker images, run the following command:
 ```bash
-make docker-run
+make docker-up
 ```
 
 To go inside a docker image, run the following commands:

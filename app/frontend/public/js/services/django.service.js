@@ -1,6 +1,4 @@
-import config from '../../config.js';
-
-const HELLO_API = config.BACKEND_API;
+const HELLO_API = 'http://localhost:81/api/hello/'; // TODO: Have .env file
 
 export default class DjangoService {
   static async getHello() {
