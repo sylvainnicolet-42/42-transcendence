@@ -7,7 +7,7 @@ services:
       context: app/frontend/
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - ${FRONTEND_PORT}:80
     networks:
       - transcendance_network
     volumes:
@@ -20,7 +20,7 @@ services:
       context: app/backend/
       dockerfile: Dockerfile
     ports:
-      - "81:80"
+      - ${BACKEND_PORT}:80
     networks:
       - transcendance_network
     volumes:
