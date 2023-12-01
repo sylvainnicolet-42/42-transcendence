@@ -1,4 +1,4 @@
-const HELLO_API = 'http://localhost:81/api/hello/'; // TODO: Have .env file
+const HELLO_API = 'http://localhost:82/api/hello/'; // TODO: Have .env file
 
 export default class DjangoService {
   static async getHello() {

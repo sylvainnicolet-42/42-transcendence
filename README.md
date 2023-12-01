@@ -84,7 +84,7 @@ pip install your-dependency
 Generate requirements.txt:
 
 ```bash
-pip freeze > requirements.txt
+pip freeze > src/requirements.txt
 ```
 
 Create new app:
