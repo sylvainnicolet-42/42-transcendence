@@ -12,6 +12,8 @@ services:
       - transcendance_network
     volumes:
       - ./app/frontend/public:/home/transcendence/public
+    environment:
+      BACKEND_API_URL: ${BACKEND_API_URL}
 
   backend:
     image: transcendence/backend
