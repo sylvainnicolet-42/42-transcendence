@@ -28,8 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost']
 
-CORS_ALLOW_ALL_ORIGINS = [
-    'http://localhost:80',
+CORS_ORIGIN_WHITELIST = [
+    os.getenv("FRONTEND_URL", "http://localhost:80"),
 ]
 
 
@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'transcendence.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': '5432',
+        'NAME': os.getenv("DB_NAME", "postgres"),
+        'USER': os.getenv("DB_USER", "postgres"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "postgres"),
+        'HOST': os.getenv("DB_HOST", "localhost"),
+        'PORT': os.getenv("DB_PORT", "5432"),
     }
 }
 
