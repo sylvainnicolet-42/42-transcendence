@@ -1,5 +1,6 @@
 // canvas
 const canvas = document.getElementById('game');
+const container = document.getElementById("game-container");
 const ctx = canvas.getContext("2d");
 
 // objects
@@ -9,12 +10,14 @@ const GAME_STATE = {
 	OVER: 2,
 };
 
+const BASE_SPEED = 5;
+
 const ball = {
-	size: 8,
+	size: 10,
 	positionX: canvas.width / 2 + 8,
-	positionY: canvas.heigth / 2 + 8,
-	velocityX: 2,
-	velocityY: 2,
+	positionY: canvas.height / 2 + 8,
+	velocityX: BASE_SPEED,
+	velocityY: BASE_SPEED,
 	color: 'white',
 };
 
@@ -25,7 +28,7 @@ const player1 = {
 	positionY: canvas.height / 2 - 100 / 2,
 	color: 'white',
 	player: 'left',
-	speed: 2,
+	speed: BASE_SPEED,
 };
 
 const player2 = {
@@ -35,7 +38,7 @@ const player2 = {
 	positionY: canvas.height / 2 - 100 / 2,
 	color: 'white',
 	player: 'right',
-	speed: 2,
+	speed: BASE_SPEED,
 };
 
 // game state
@@ -59,7 +62,6 @@ let hits = 0;
 // key events
 document.addEventListener('keydown', (event) => {
 	const keyName = event.key;
-	console.log(keyName);
 
 	if (keyName === 's') {
 		keyPressed['S'] = true;
@@ -191,8 +193,8 @@ function updateKeyPresses() {
 
 // manage ball
 function resetBall() {
-	ball.positionX = canvas.width / 2 + ball.size;
-	ball.positionY = canvas.height / 2 + ball.size;
+	ball.positionX = canvas.width / 2 - ball.size / 2;
+	ball.positionY = canvas.height / 2 - ball.size / 2;
 
 	let velocityX = ball.velocityX;
 	let velocityY = ball.velocityY;
@@ -201,8 +203,8 @@ function resetBall() {
 	ball.velocityY = 0;
 
 	setTimeout(() => {
-		ball.velocityX = -velocityX;
-		ball.velocityY = -velocityY;
+		ball.velocityX = (-velocityX) * BASE_SPEED / velocityX;
+		ball.velocityY = (Math.random() * 2 - 1) * BASE_SPEED;
 	}, 1000);
 }
 
@@ -237,16 +239,24 @@ function gameOver() {
 }
 
 function updateState() {
-	if (ball.positionY + ball.size >= canvas.height || ball.positionY - ball.size <= 0) {
+	if (ball.positionY + ball.size >= canvas.height || ball.positionY <= 0) {
 		ball.velocityY = -ball.velocityY;
 	}
-	if ((ball.positionX + ball.size >= canvas.width - player2.width - 10 &&
-			ball.positionY >= player2.positionY && ball.positionY <= player2.positionY + player2.height) ||
-		(ball.positionX - ball.size <= player1.width + 10 &&
-			ball.positionY >= player1.positionY && ball.positionY <= player1.positionY + player1.height)
+	if ((ball.positionX - ball.size <= player1.width + 10 &&
+		ball.positionY + ball.size >= player1.positionY && ball.positionY <= player1.positionY + player1.height)
 	) {
+		// Collision wiith player 1 paddle
 		if (activated) {
-			ball.velocityX = -ball.velocityX;
+			ball.velocityX = (-ball.velocityX) * 1.05;
+			collisionTimeLag();
+		}
+	}
+	else if ((ball.positionX + ball.size >= canvas.width - player2.width - 10 &&
+		ball.positionY + ball.size >= player2.positionY && ball.positionY <= player2.positionY + player2.height)
+	) {
+		// Collision wiith player 2 paddle
+		if (activated) {
+			ball.velocityX = (-ball.velocityX) * 1.05;
 			collisionTimeLag();
 		}
 	}
@@ -280,11 +290,11 @@ function gameLoop() {
 
 // window resize util
 function updateDefault() {
-	canvas.width = Math.max(window.innerWidth * 0.8, 800);
-	canvas.height = Math.max(window.innerHeight * 0.6, 600);
+	canvas.width = container.clientWidth;
+	canvas.height = canvas.width * 0.6;
 
-	ball.positionX = canvas.width / 2 + ball.size;
-	ball.positionY = canvas.height / 2 + ball.size;
+	ball.positionX = canvas.width / 2 - ball.size / 2;
+	ball.positionY = canvas.height / 2 - ball.size / 2;
 
 	player1.positionY = canvas.height / 2 - player1.height / 2;
 	player2.positionX = canvas.width - player2.width - 10;
@@ -292,9 +302,14 @@ function updateDefault() {
 }
 
 function resizeHandler() {
-	// TODO: Responsive
 	updateDefault();
-	drawAll();
+	if (game.state === GAME_STATE.OVER) {
+		drawGameOver();
+	} else if (game.state !== GAME_STATE.STARTED) {
+		drawGameStart();
+	} else {
+		drawAll();
+	}
 }
 
 resizeHandler();
