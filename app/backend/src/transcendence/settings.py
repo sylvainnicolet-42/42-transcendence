@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost']
 
 CORS_ORIGIN_WHITELIST = [
-    os.getenv("FRONTEND_URL", "http://localhost:80"),
+    os.getenv("FRONTEND_PORT", "http://localhost:81"),
 ]
 
 
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'drf_yasg',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
