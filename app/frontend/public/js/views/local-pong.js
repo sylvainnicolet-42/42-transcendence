@@ -11,11 +11,12 @@ const GAME_STATE = {
 };
 
 const BASE_SPEED = 5;
+const SPEED_INCREASE = 1.05;
 
 const ball = {
 	size: 10,
-	positionX: canvas.width / 2 + 8,
-	positionY: canvas.height / 2 + 8,
+	positionX: canvas.width / 2 + 5,
+	positionY: canvas.height / 2 + 5,
 	velocityX: BASE_SPEED,
 	velocityY: BASE_SPEED,
 	color: 'white',
@@ -205,7 +206,7 @@ function resetBall() {
 	ball.velocityY = 0;
 
 	setTimeout(() => {
-		ball.velocityX = (-velocityX) * BASE_SPEED * 1.05 / Math.abs(velocityX);
+		ball.velocityX = (-velocityX) * BASE_SPEED * SPEED_INCREASE / Math.abs(velocityX);
 		ball.velocityY = (Math.random() * 2 - 1) * BASE_SPEED;
 	}, 1000);
 }
@@ -239,27 +240,36 @@ function setScore() {
 	}
 }
 
+function paddleCollision(player) {
+	if (activated) {
+		ball.velocityX = (-ball.velocityX) * SPEED_INCREASE;
+		let min = player.positionY;
+		let max = min + player.height;
+		let normalizeY = 2 * ((ball.positionY - min) / (max - min)) - 1;
+		ball.velocityY += 0.5 * normalizeY;
+		collisionTimeLag();
+	}
+}
+
 function updateState() {
 	if (ball.positionY + ball.size >= canvas.height || ball.positionY <= 0) {
+		// Collision with floor or ceiling
 		ball.velocityY = -ball.velocityY;
 	}
+
 	if ((ball.positionX - ball.size <= player1.width + 10 &&
-		ball.positionY + ball.size >= player1.positionY && ball.positionY <= player1.positionY + player1.height)
+		ball.positionY + ball.size >= player1.positionY &&
+		ball.positionY <= player1.positionY + player1.height)
 	) {
-		// Collision wiith player 1 paddle
-		if (activated) {
-			ball.velocityX = (-ball.velocityX) * 1.05;
-			collisionTimeLag();
-		}
+		// Collision with player 1 paddle
+		paddleCollision(player1);
 	}
 	else if ((ball.positionX + ball.size >= canvas.width - player2.width - 10 &&
-		ball.positionY + ball.size >= player2.positionY && ball.positionY <= player2.positionY + player2.height)
+		ball.positionY + ball.size >= player2.positionY &&
+		ball.positionY <= player2.positionY + player2.height)
 	) {
-		// Collision wiith player 2 paddle
-		if (activated) {
-			ball.velocityX = (-ball.velocityX) * 1.05;
-			collisionTimeLag();
-		}
+		// Collision with player 2 paddle
+		paddleCollision(player2);
 	}
 
 	setScore();
