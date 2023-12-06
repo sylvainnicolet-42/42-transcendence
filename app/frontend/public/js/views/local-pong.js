@@ -29,6 +29,7 @@ const player1 = {
 	color: 'white',
 	player: 'left',
 	speed: BASE_SPEED,
+	name: 'Player 1',
 };
 
 const player2 = {
@@ -39,6 +40,7 @@ const player2 = {
 	color: 'white',
 	player: 'right',
 	speed: BASE_SPEED,
+	name: 'Player 2',
 };
 
 // game state
@@ -75,8 +77,9 @@ document.addEventListener('keydown', (event) => {
 	if (keyName === 'ArrowDown') {
 		keyPressed['Down'] = true;
 	}
-	if (keyName === 'Enter' && game.state !== GAME_STATE.STARTED) {
+	if (keyName === 'Enter' && game.state === GAME_STATE.PAUSED) {
 		game.state = GAME_STATE.STARTED;
+		setTimeout(() => {}, 200);
 	}
 }, false);
 
@@ -96,77 +99,6 @@ document.addEventListener('keyup', (event) => {
 		keyPressed['Down'] = false;
 	}
 }, false);
-
-// update state
-function drawField() {
-	ctx.fillStyle = '#222222';
-	ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
-
-function drawScores() {
-	ctx.font = '30px sans-serif';
-	ctx.textAliign = 'center';
-	ctx.fillText(game.player1Score.toString(), canvas.width / 4, 50);
-	ctx.fillText(game.player2Score.toString(), canvas.width / 4 * 3, 50);
-}
-
-function drawPlayers() {
-	ctx.fillStyle = player1.color;
-	ctx.fillRect(player1.positionX, player1.positionY, player1.width, player1.height);
-	ctx.fillStyle = player2.color;
-	ctx.fillRect(player2.positionX, player2.positionY, player2.width, player2.height);
-}
-
-function drawBall() {
-	ctx.fillStyle = ball.color;
-	ctx.fillRect(ball.positionX, ball.positionY, ball.size, ball.size);
-}
-
-function drawNet() {
-	ctx.beginPath();
-	ctx.setLineDash([7, 15]);
-	ctx.moveTo(canvas.width / 2, canvas.height);
-	ctx.lineTo(canvas.width / 2, 0);
-	ctx.lineWidth = 10;
-	ctx.strokeStyle = '#ffffff';
-	ctx.stroke();
-}
-
-function drawAll() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	drawField();
-	drawPlayers();
-	drawBall();
-	drawNet();
-	drawScores();
-}
-
-function drawGameStart() {
-	drawAll();
-	ctx.fillStyle = '#222222';
-	ctx.fillRect(canvas.width / 4, canvas.height / 4, canvas.width / 2, canvas.height / 2);
-	ctx.fillStyle = 'white';
-	ctx.font = '30px sans-serif';
-	ctx.textAlign = 'center';
-	ctx.fillText('Press Enter to start', canvas.width / 2, canvas.height / 2);
-}
-
-function drawGameOver() {
-	drawAll();
-	ctx.fillStyle = '#222222';
-	ctx.fillRect(canvas.width / 4, canvas.height / 4, canvas.width / 2, canvas.height / 2);
-	ctx.fillStyle = 'white';
-	ctx.font = '30px sans-serif';
-	ctx.textAlign = 'center';
-	if (game.player1Score === game.maxScore) {
-		ctx.fillText('Player 1 wins', canvas.width / 2, canvas.height / 2);
-	} else {
-		ctx.fillText('Player 2 wins', canvas.width / 2, canvas.height / 2);
-	}
-	setTimeout(() => {
-		drawGameStart();
-	}, 1000);
-}
 
 function updateKeyPresses() {
 	if (keyPressed['W']) {
@@ -191,31 +123,91 @@ function updateKeyPresses() {
 	}
 }
 
-// manage ball
+// draw elements
+function drawField() {
+	ctx.fillStyle = '#222222';
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawPlayers() {
+	ctx.fillStyle = player1.color;
+	ctx.fillRect(player1.positionX, player1.positionY, player1.width, player1.height);
+	ctx.fillStyle = player2.color;
+	ctx.fillRect(player2.positionX, player2.positionY, player2.width, player2.height);
+}
+
+function drawBall() {
+	ctx.fillStyle = ball.color;
+	ctx.fillRect(ball.positionX, ball.positionY, ball.size, ball.size);
+}
+
+function drawNet() {
+	ctx.beginPath();
+	ctx.setLineDash([7, 15]);
+	ctx.moveTo(canvas.width / 2, canvas.height);
+	ctx.lineTo(canvas.width / 2, 0);
+	ctx.lineWidth = 10;
+	ctx.strokeStyle = '#ffffff';
+	ctx.stroke();
+}
+
+function drawScores() {
+	ctx.font = '30px sans-serif';
+	ctx.textAliign = 'center';
+	ctx.fillText(game.player1Score.toString(), canvas.width / 4, 50);
+	ctx.fillText(game.player2Score.toString(), canvas.width / 4 * 3, 50);
+}
+
+function drawStartMessage() {
+	ctx.fillStyle = '#222222';
+	ctx.fillRect(canvas.width / 4, canvas.height / 4, canvas.width / 2, canvas.height / 2);
+	ctx.fillStyle = 'white';
+	ctx.font = '30px sans-serif';
+	ctx.textAlign = 'center';
+	ctx.fillText('Press Enter to start', canvas.width / 2, canvas.height / 2);
+}
+
+function drawGameOverMessage() {
+	ctx.fillStyle = '#222222';
+	ctx.fillRect(canvas.width / 4, canvas.height / 4, canvas.width / 2, canvas.height / 2);
+	ctx.fillStyle = 'white';
+	ctx.font = '30px sans-serif';
+	ctx.textAlign = 'center';
+	if (game.player1Score === game.maxScore) {
+		ctx.fillText(player1.name + ' wins', canvas.width / 2, canvas.height / 2);
+	} else {
+		ctx.fillText(player2.name + ' wins', canvas.width / 2, canvas.height / 2);
+	}
+}
+
+function drawAll() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawField();
+	drawPlayers();
+	drawBall();
+	drawNet();
+	drawScores();
+	if (game.state === GAME_STATE.OVER) {
+		drawGameOverMessage();
+	} else if (game.state === GAME_STATE.PAUSED) {
+		drawStartMessage();
+	}
+}
+
+// reset elements
 function resetBall() {
 	ball.positionX = canvas.width / 2 - ball.size / 2;
 	ball.positionY = canvas.height / 2 - ball.size / 2;
 
 	let velocityX = ball.velocityX;
-	let velocityY = ball.velocityY;
 
 	ball.velocityX = 0;
 	ball.velocityY = 0;
 
 	setTimeout(() => {
-		ball.velocityX = (-velocityX) * BASE_SPEED / velocityX;
+		ball.velocityX = (-velocityX) * BASE_SPEED * 1.05 / Math.abs(velocityX);
 		ball.velocityY = (Math.random() * 2 - 1) * BASE_SPEED;
 	}, 1000);
-}
-
-function setScore() {
-	if (ball.positionX > canvas.width - (player2.width)) {
-		game.player1Score++;
-		resetBall();
-	} else if (ball.positionX < player1.width) {
-		game.player2Score++;
-		resetBall();
-	}
 }
 
 function resetGame() {
@@ -225,16 +217,25 @@ function resetGame() {
 }
 
 function gameOver() {
-	if (game.player1Score === game.maxScore) {
-		console.log('Player 1 wins');
+	if (game.player1Score === game.maxScore ||
+		game.player2Score === game.maxScore
+	) {
 		resetGame();
 		game.state = GAME_STATE.OVER;
-		drawGameOver();
-	} else if (game.player2Score === game.maxScore) {
-		console.log('Player 2 wins');
-		resetGame();
-		game.state = GAME_STATE.OVER;
-		drawGameOver();
+		drawGameOverMessage();
+		setTimeout(() => {
+			game.state = GAME_STATE.PAUSED;
+		}, 2000);
+	}
+}
+
+function setScore() {
+	if (ball.positionX > canvas.width - (player2.width)) {
+		game.player1Score++;
+		resetBall();
+	} else if (ball.positionX < player1.width) {
+		game.player2Score++;
+		resetBall();
 	}
 }
 
@@ -281,10 +282,8 @@ function gameLoop() {
 	if (game.state === GAME_STATE.STARTED) {
 		updateKeyPresses();
 		updateState();
-		if (game.state !== GAME_STATE.OVER) {
-			drawAll();
-		}
 	}
+	drawAll();
 	requestAnimationFrame(gameLoop);
 }
 
@@ -303,17 +302,11 @@ function updateDefault() {
 
 function resizeHandler() {
 	updateDefault();
-	if (game.state === GAME_STATE.OVER) {
-		drawGameOver();
-	} else if (game.state !== GAME_STATE.STARTED) {
-		drawGameStart();
-	} else {
-		drawAll();
-	}
+	drawAll();
 }
 
 resizeHandler();
 window.addEventListener('resize', resizeHandler);
 
-drawGameStart();
+// Start of the loop
 requestAnimationFrame(gameLoop);
