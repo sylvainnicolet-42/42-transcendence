@@ -15,13 +15,17 @@ export default {
     view: 'views/tournaments/create.html',
     script: 'js/views/tournaments/create.js'
   },
-  '#/tournaments/list': {
-    view: 'views/tournaments/list.html',
-    script: 'js/views/tournaments/list.js'
+  '#/tournaments/edit/:id': {
+    view: 'views/tournaments/edit.html',
+    script: 'js/views/tournaments/edit.js'
   },
   '#/tournaments/detail/:id': {
     view: 'views/tournaments/detail.html',
     script: 'js/views/tournaments/detail.js'
+  },
+  '#/tournaments/list': {
+    view: 'views/tournaments/list.html',
+    script: 'js/views/tournaments/list.js'
   },
   '#/login': {
     view: 'views/login.html',
