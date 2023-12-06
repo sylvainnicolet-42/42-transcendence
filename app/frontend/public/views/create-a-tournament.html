@@ -3,4 +3,33 @@
     <h2>Create a tournament</h2>
     <p>You will be able to create a tournament soon. We are working on it. 🤖</p>
   </div>
+  <div class="col-lg-6 offset-lg-3">
+    <div class="card text-start">
+      <div class="card-body">
+        <form id="create-a-tournament-form" action="https://localhost:82/api/tournaments/create" method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label mb-1">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+          </div>
+          <div class="mb-3">
+            <label for="points_to_win" class="form-label mb-1">Points to win</label>
+            <input
+                type="number"
+                class="form-control"
+                id="points_to_win"
+                name="points_to_win"
+                placeholder="Points to win"
+                min="1"
+                max="10"
+                value="1"
+                required
+            >
+          </div>
+          <div class="d-grid d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-primary">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
