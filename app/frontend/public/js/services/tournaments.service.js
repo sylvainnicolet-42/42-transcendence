@@ -36,4 +36,18 @@ export default class TournamentsService {
       throw error;
     }
   }
+
+  static async getDetail(id) {
+    try {
+      const response = await fetch(TOURNAMENTS_API + 'detail/' + id);
+
+      if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
+  }
 }

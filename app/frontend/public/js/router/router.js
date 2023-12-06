@@ -1,8 +1,23 @@
 import routes from './routes.js';
+import { setRouteParams } from './routeParams.js';
 
 function render() {
   const path = window.location.hash || '/';
-  const route = routes[path];
+  let route = routes[path];
+
+  // Check if the route is dynamic
+  if (route === undefined) {
+    const routeParts = path.split('/');
+
+    // Get base route removing last part, join with /m add :id at the end
+    const baseRoute = routeParts.slice(0, -1).join('/') + '/:id';
+
+    // Check if the base route exists
+    if (routes[baseRoute]) {
+      route = routes[baseRoute];
+      setRouteParams({ id: routeParts[routeParts.length - 1] });
+    }
+  }
 
   if (route) {
     fetch(route.view)

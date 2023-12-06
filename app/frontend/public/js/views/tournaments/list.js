@@ -59,13 +59,20 @@ async function init() {
 
       // Tournament actions
       const tdActions = document.createElement('td');
-      tdActions.className = 'text-end';
+      tdActions.className = 'd-flex flex-column flex-md-row justify-content-end align-items-end';
       tr.appendChild(tdActions);
+
+      // Detail button
+      const aDetail = document.createElement('a');
+      aDetail.href = '#/tournaments/detail/' + tournament.id;
+      aDetail.className = 'btn btn-primary me-1 mb-1 mb-md-0';
+      aDetail.textContent = 'Detail';
+      tdActions.appendChild(aDetail);
 
       // Edit button
       const aEdit = document.createElement('a');
       aEdit.href = '#/tournaments/edit/' + tournament.id;
-      aEdit.className = 'btn btn-primary me-2';
+      aEdit.className = 'btn btn-primary me-1 mb-1 mb-md-0';
       aEdit.textContent = 'Edit';
       tdActions.appendChild(aEdit);
 

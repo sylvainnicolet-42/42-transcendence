@@ -19,6 +19,10 @@ export default {
     view: 'views/tournaments/list.html',
     script: 'js/views/tournaments/list.js'
   },
+  '#/tournaments/detail/:id': {
+    view: 'views/tournaments/detail.html',
+    script: 'js/views/tournaments/detail.js'
+  },
   '#/login': {
     view: 'views/login.html',
   },
