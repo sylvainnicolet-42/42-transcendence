@@ -1,10 +1,8 @@
 import TournamentsService from "../../services/tournaments.service.js";
 
 async function init() {
-  console.log("init");
   try {
     const list = await TournamentsService.getList();
-    console.log("fetch");
     const container = document.getElementById('tournaments_list_container');
 
     // Create a table

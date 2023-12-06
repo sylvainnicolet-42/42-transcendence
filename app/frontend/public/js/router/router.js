@@ -10,9 +10,16 @@ function render() {
       .then(html => {
         document.getElementById('app').innerHTML = html;
         if (route.script) {
+          // Remove the previous script
+          const oldScript = document.querySelector('script[data-script="route-script"]');
+          if (oldScript) {
+            oldScript.remove();
+          }
+          // Add the new script
           const script = document.createElement('script');
           script.type = 'module';
-          script.src = route.script;
+          script.dataset.script = 'route-script';
+          script.src = `${route.script}?ts=${new Date().getTime()}`;
           document.head.appendChild(script);
         }
       });
