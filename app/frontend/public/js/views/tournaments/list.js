@@ -1,5 +1,20 @@
 import TournamentsService from "../../services/tournaments.service.js";
 
+function deleteTournament(id) {
+  const confirmed = confirm('Are you sure you want to delete this tournament?');
+
+  if (confirmed) {
+    TournamentsService.delete(id)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+
+}
+
 async function init() {
   try {
     const list = await TournamentsService.getList();
@@ -78,9 +93,11 @@ async function init() {
 
       // Delete button
       const aDelete = document.createElement('a');
-      aDelete.href = '#/tournaments/delete/' + tournament.id;
       aDelete.className = 'btn btn-danger';
       aDelete.textContent = 'Delete';
+      aDelete.addEventListener('click', () => {
+        deleteTournament(tournament.id);
+      });
       tdActions.appendChild(aDelete);
     });
   } catch (error) {

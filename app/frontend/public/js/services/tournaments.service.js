@@ -50,4 +50,18 @@ export default class TournamentsService {
       throw error;
     }
   }
+
+  static async delete(id) {
+    try {
+      const response = await fetch(TOURNAMENTS_API + 'delete/' + id, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status}`);
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
 }
