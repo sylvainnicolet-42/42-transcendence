@@ -11,8 +11,12 @@ export default {
   '#/player-vs-online': {
     view: 'views/player-vs-online.html',
   },
-  '#/create-a-tournament': {
-    view: 'views/create-a-tournament.html',
+  '#/tournaments/create': {
+    view: 'views/tournaments/create.html',
+  },
+  '#/tournaments/list': {
+    view: 'views/tournaments/list.html',
+    script: 'js/views/tournaments/list.js'
   },
   '#/login': {
     view: 'views/login.html',
@@ -25,9 +29,5 @@ export default {
   },
   '#/profile/edit': {
     view: 'views/auth/edit-profile.html',
-  },
-  '#/django': {
-    view: 'views/django.html',
-    script: 'js/views/django.js',
-  },
+  }
 }
