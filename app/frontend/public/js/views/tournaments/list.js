@@ -28,6 +28,16 @@ async function init() {
     // Create the table body
     const tbody = document.createElement('tbody');
     table.appendChild(tbody);
+
+    if (list.length === 0) {
+      const tr = document.createElement('tr');
+      tbody.appendChild(tr);
+      const td = document.createElement('td');
+      td.setAttribute('colspan', '4');
+      td.textContent = 'No tournaments found';
+      tr.appendChild(td);
+    }
+
     list.forEach(tournament => {
       const tr = document.createElement('tr');
       tbody.appendChild(tr);
@@ -67,7 +77,7 @@ async function init() {
       tdActions.appendChild(aDelete);
     });
   } catch (error) {
-    console.error('Error loading tournaments list', error);
+    console.error('Error: ', error);
   }
 }
 

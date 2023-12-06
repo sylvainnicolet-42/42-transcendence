@@ -16,4 +16,24 @@ export default class TournamentsService {
       throw error;
     }
   }
+
+  static async create(tournament) {
+    try {
+      const response = await fetch(TOURNAMENTS_API + 'create/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(tournament),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
+  }
 }

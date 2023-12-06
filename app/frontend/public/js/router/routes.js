@@ -13,6 +13,7 @@ export default {
   },
   '#/tournaments/create': {
     view: 'views/tournaments/create.html',
+    script: 'js/views/tournaments/create.js'
   },
   '#/tournaments/list': {
     view: 'views/tournaments/list.html',
