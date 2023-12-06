@@ -30,16 +30,17 @@ export default {
     script: 'js/views/tournaments/list.js'
   },
   '#/login': {
-    view: 'views/login.html',
+    view: 'views/auth/login.html',
+    script: 'js/views/auth/login.js',
   },
   '#/register': {
-    view: 'views/register.html',
+    view: 'views/auth/register.html',
   },
   '#/profile': {
-    view: 'views/auth/profile.html',
+    view: 'views/profile/detail.html',
   },
   '#/profile/edit': {
-    view: 'views/auth/edit-profile.html',
+    view: 'views/profile/edit.html',
   },
   '#/not-authenticated': {
     view: 'views/auth/not-authenticated.html',

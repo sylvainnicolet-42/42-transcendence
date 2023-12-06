@@ -6,7 +6,6 @@ class UserSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     email = serializers.EmailField(required=True)
     password = serializers.CharField(write_only=True, required=True)
-    password2 = serializers.CharField(write_only=True, required=True)
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
@@ -17,8 +16,6 @@ class UserSerializer(serializers.Serializer):
             raise serializers.ValidationError({'username': 'Username already exists.'})
         if User.objects.filter(email=validated_data['email']).exists():
             raise serializers.ValidationError({'email': 'Email already exists.'})
-        if validated_data['password'] != validated_data['password2']:
-            raise serializers.ValidationError({'password': 'Passwords must match.'})
         user = User.objects.create_user(
             validated_data['username'],
             validated_data['email'],
