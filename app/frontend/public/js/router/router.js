@@ -1,5 +1,6 @@
 import routes from './routes.js';
 import { setRouteParams } from './routeParams.js';
+import { isAuthenticated } from "../security/auth.js";
 
 function render() {
   const path = window.location.hash || '/';
@@ -20,6 +21,13 @@ function render() {
   }
 
   if (route) {
+
+    // Check authentication
+    if (route.auth && !isAuthenticated()) {
+      window.location.hash = '#/not-authenticated';
+      return;
+    }
+
     fetch(route.view)
       .then(response => response.text())
       .then(html => {

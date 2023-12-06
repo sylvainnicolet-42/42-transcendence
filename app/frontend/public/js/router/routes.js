@@ -13,7 +13,8 @@ export default {
   },
   '#/tournaments/create': {
     view: 'views/tournaments/create.html',
-    script: 'js/views/tournaments/create.js'
+    script: 'js/views/tournaments/create.js',
+    auth: true
   },
   '#/tournaments/edit/:id': {
     view: 'views/tournaments/edit.html',
@@ -38,5 +39,8 @@ export default {
   },
   '#/profile/edit': {
     view: 'views/auth/edit-profile.html',
+  },
+  '#/not-authenticated': {
+    view: 'views/auth/not-authenticated.html',
   }
 }
