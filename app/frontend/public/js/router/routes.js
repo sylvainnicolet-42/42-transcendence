@@ -4,6 +4,7 @@ export default {
   },
   '#/player-vs-player': {
     view: 'views/player-vs-player.html',
+    script: 'js/views/local-pong.js',
   },
   '#/player-vs-computer': {
     view: 'views/player-vs-computer.html',
