@@ -1,9 +1,16 @@
 import routes from './routes.js';
 import { setRouteParams } from './routeParams.js';
-import { isAuthenticated } from "../security/auth.js";
+import { isAuthenticated, logout } from "../security/auth.js";
 
 async function render() {
   const path = window.location.hash || '/';
+
+  // Check logout
+  if (path === '#/logout') {
+    logout();
+    return;
+  }
+
   let route = routes[path];
 
   // Check if the route is dynamic
