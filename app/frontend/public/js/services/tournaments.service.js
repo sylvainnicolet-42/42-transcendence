@@ -6,7 +6,7 @@ export default class TournamentsService {
 
   static async create(tournament) {
     try {
-      const response = await fetch(TOURNAMENTS_API + 'create/', {
+      const response = await fetch(TOURNAMENTS_API + 'create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export default class TournamentsService {
 
   static async update(id, tournament) {
     try {
-      const response = await fetch(TOURNAMENTS_API + 'update/' + id, {
+      const response = await fetch(TOURNAMENTS_API + 'update' + id, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default class TournamentsService {
 
   static async getDetail(id) {
     try {
-      const response = await fetch(TOURNAMENTS_API + 'detail/' + id);
+      const response = await fetch(TOURNAMENTS_API + 'detail' + id);
 
       if (!response.ok) {
         throw new Error(`Error HTTP: ${response.status}`);
@@ -60,7 +60,7 @@ export default class TournamentsService {
 
   static async delete(id) {
     try {
-      const response = await fetch(TOURNAMENTS_API + 'delete/' + id, {
+      const response = await fetch(TOURNAMENTS_API + 'delete' + id, {
         method: 'DELETE',
       });
 
@@ -74,7 +74,7 @@ export default class TournamentsService {
 
   static async getList() {
     try {
-      const response = await fetch(TOURNAMENTS_API + 'list/');
+      const response = await fetch(TOURNAMENTS_API + 'list');
 
       if (!response.ok) {
         throw new Error(`Error HTTP: ${response.status}`);

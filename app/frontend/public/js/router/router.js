@@ -2,7 +2,7 @@ import routes from './routes.js';
 import { setRouteParams } from './routeParams.js';
 import { isAuthenticated } from "../security/auth.js";
 
-function render() {
+async function render() {
   const path = window.location.hash || '/';
   let route = routes[path];
 
@@ -23,7 +23,7 @@ function render() {
   if (route) {
 
     // Check authentication
-    if (route.auth && !isAuthenticated()) {
+    if (route.auth && await isAuthenticated() === false) {
       window.location.hash = '#/not-authenticated';
       return;
     }

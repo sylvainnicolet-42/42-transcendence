@@ -24,4 +24,14 @@ export default class AuthService {
       throw error;
     }
   }
+
+  static async verifyToken(token) {
+    return await fetch(AUTH_API + 'token/verify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(token),
+    });
+  }
 }
