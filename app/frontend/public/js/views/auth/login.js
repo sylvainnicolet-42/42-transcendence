@@ -6,6 +6,7 @@ function init() {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
+    const spanError = document.getElementById('login-error');
     const formData = new FormData(form);
     const jsonData = Object.fromEntries(formData.entries());
     const user = {
@@ -13,21 +14,25 @@ function init() {
       password: jsonData.password
     }
 
-    try {
-      AuthService.login(user)
-        .then(response => {
-          if (response.access && response.refresh) {
-            localStorage.setItem('access_token', response.access);
-            localStorage.setItem('refresh_token', response.refresh);
-            window.location.href = '#/profile';
-          }
-        })
-        .catch(error => {
-          console.log(error);
+    AuthService.login(user)
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          throw new Error('Invalid credentials');
+        }
+      })
+      .then(response => {
+        response.text().then(text => {
+          const data = JSON.parse(text);
+          localStorage.setItem('access_token', data.access);
+          localStorage.setItem('refresh_token', data.refresh);
+          window.location.href = '#/profile';
         });
-    } catch (error) {
-      console.log(error);
-    }
+      })
+      .catch(error => {
+        spanError.innerText = error.message;
+      });
   });
 }
 
