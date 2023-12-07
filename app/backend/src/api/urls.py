@@ -29,8 +29,8 @@ urlpatterns = [
     path('auth/register', views.RegisterView.as_view(), name='register'),
     path('hello', views.HelloWorldView.as_view(), name='hello'),
     path('tournaments/list', views.TournamentListView.as_view(), name='tournament-list'),
-    path('tournaments/detail/(?P<pk>[0-9]+)', views.TournamentDetailView.as_view(), name='tournament-detail'),
+    path('tournaments/detail/<int:pk>', views.TournamentDetailView.as_view(), name='tournament-detail'),
     path('tournaments/create', views.TournamentCreateView.as_view(), name='tournament-create'),
-    path('tournaments/update/(?P<pk>[0-9]+)', views.TournamentUpdateView.as_view(), name='tournament-update'),
-    path('tournaments/delete/(?P<pk>[0-9]+)', views.TournamentDeleteView.as_view(), name='tournament-delete'),
+    path('tournaments/update/<int:pk>', views.TournamentUpdateView.as_view(), name='tournament-update'),
+    path('tournaments/delete/<int:pk>', views.TournamentDeleteView.as_view(), name='tournament-delete'),
 ]
