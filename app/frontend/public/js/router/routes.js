@@ -8,9 +8,11 @@ export default {
   },
   '#/player-vs-computer': {
     view: 'views/player-vs-computer.html',
+    auth: true
   },
   '#/player-vs-online': {
     view: 'views/player-vs-online.html',
+    auth: true
   },
   '#/tournaments/create': {
     view: 'views/tournaments/create.html',
@@ -19,15 +21,18 @@ export default {
   },
   '#/tournaments/edit/:id': {
     view: 'views/tournaments/edit.html',
-    script: 'js/views/tournaments/edit.js'
+    script: 'js/views/tournaments/edit.js',
+    auth: true
   },
   '#/tournaments/detail/:id': {
     view: 'views/tournaments/detail.html',
-    script: 'js/views/tournaments/detail.js'
+    script: 'js/views/tournaments/detail.js',
+    auth: true
   },
   '#/tournaments/list': {
     view: 'views/tournaments/list.html',
-    script: 'js/views/tournaments/list.js'
+    script: 'js/views/tournaments/list.js',
+    auth: true
   },
   '#/login': {
     view: 'views/auth/login.html',
@@ -38,9 +43,11 @@ export default {
   },
   '#/profile': {
     view: 'views/profile/detail.html',
+    auth: true
   },
   '#/profile/edit': {
     view: 'views/profile/edit.html',
+    auth: true
   },
   '#/not-authenticated': {
     view: 'views/auth/not-authenticated.html',
