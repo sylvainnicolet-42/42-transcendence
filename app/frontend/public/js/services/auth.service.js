@@ -31,7 +31,7 @@ export default class AuthService {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(token),
+      body: JSON.stringify({ token }),
     });
   }
 }
