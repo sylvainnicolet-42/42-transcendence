@@ -1,9 +1,11 @@
 asgiref==3.7.2
 certifi==2023.11.17
+channels_postgres
 charset-normalizer==3.3.2
 coreapi==2.3.3
 coreschema==0.0.4
-Django==4.2.7
+daphne
+Django==4.2.6
 django-cors-headers==4.3.1
 djangorestframework==3.14.0
 drf-yasg==1.21.7
