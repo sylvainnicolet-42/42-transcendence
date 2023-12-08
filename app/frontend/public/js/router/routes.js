@@ -38,5 +38,9 @@ export default {
   },
   '#/profile/edit': {
     view: 'views/auth/edit-profile.html',
-  }
+  },
+  '#/chat': {
+    view: 'views/chat.html',
+    script: 'js/views/chat/chat.js',
+  },
 }

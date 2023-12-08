@@ -42,10 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'corsheaders',
     'drf_yasg',
     'api.apps.ApiConfig',
+    'daphne',
+
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -78,6 +82,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'transcendence.wsgi.application'
+ASGI_APPLICATION = 'transcendence.asgi.application'
 
 
 # Database

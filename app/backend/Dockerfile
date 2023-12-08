@@ -26,6 +26,7 @@ ENV PYTHONBUFFERED 1
 RUN python3 -m venv venv
 RUN . venv/bin/activate
 RUN venv/bin/pip3 install -r src/requirements.txt
+RUN venv/bin/pip3 install channels
 
 EXPOSE 80
 
