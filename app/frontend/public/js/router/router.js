@@ -56,6 +56,16 @@ async function render() {
   } else {
     document.getElementById('app').innerHTML = '404 Page Not Found';
   }
+
+  // Update login/logout button
+  const logButton = document.getElementById('log_btn');
+  if (await isAuthenticated()) {
+    logButton.innerHTML = 'Logout';
+    logButton.href = '#/logout';
+  } else {
+    logButton.innerHTML = 'Login';
+    logButton.href = '#/login';
+  }
 }
 
 function initRouter() {
