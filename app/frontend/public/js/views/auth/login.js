@@ -3,7 +3,7 @@ import AuthService from '../../services/auth.service.js';
 function init() {
   const form = document.getElementById('login-form');
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const spanError = document.getElementById('login-error');
@@ -14,25 +14,16 @@ function init() {
       password: jsonData.password
     }
 
-    AuthService.login(user)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          throw new Error('Invalid credentials');
-        }
-      })
-      .then(response => {
-        response.text().then(text => {
-          const data = JSON.parse(text);
-          localStorage.setItem('access_token', data.access);
-          localStorage.setItem('refresh_token', data.refresh);
-          window.location.href = '#/profile';
-        });
-      })
-      .catch(error => {
-        spanError.innerText = error.message;
-      });
+    const response = await AuthService.login(user);
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('access_token', data.access);
+      localStorage.setItem('refresh_token', data.refresh);
+      window.location.href = '#/profile';
+    } else {
+      const data = await response.json();
+      spanError.innerText = data.detail;
+    }
   });
 }
 
