@@ -1,12 +1,12 @@
-<div id="edit-profile" class="container">
+<div id="register" class="container">
   <div class="text-center">
-    <h2>Edit Profile</h2>
-    <p>Edit your profile information</p>
+    <h2>Register</h2>
+    <p>Create a new account.</p>
 
     <div class="col-lg-6 offset-lg-3">
       <div class="card text-start">
         <div class="card-body">
-          <form>
+          <form id="register-form">
             <div class="mb-3">
               <label for="username" class="form-label mb-1">Username</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
@@ -19,15 +19,15 @@
               <label for="confirm_password" class="form-label mb-1">Confirm Password</label>
               <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
             </div>
-            <div class="mb-3">
-              <label for="image_profile" class="form-label mb-1">Image Profile</label>
-              <input type="file" class="form-control" id="image_profile" name="image_profile" placeholder="Image Profile">
-            </div>
             <div class="d-grid d-md-flex justify-content-md-end">
-              <button type="button" class="btn btn-secondary me-md-2" onclick="window.history.back()">Back</button>
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" class="btn btn-primary">Register</button>
             </div>
+            <span id="register-error" class="text-danger"></span>
           </form>
+        </div>
+
+        <div class="card-footer text-center py-3">
+          <span>Already have an account? <a href="#/login" data-link>Login</a></span>
         </div>
       </div>
     </div>

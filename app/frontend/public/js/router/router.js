@@ -1,8 +1,16 @@
 import routes from './routes.js';
 import { setRouteParams } from './routeParams.js';
+import { isAuthenticated, logout } from "../security/auth.js";
 
-function render() {
+async function render() {
   const path = window.location.hash || '/';
+
+  // Check logout
+  if (path === '#/logout') {
+    logout();
+    return;
+  }
+
   let route = routes[path];
 
   // Check if the route is dynamic
@@ -20,6 +28,13 @@ function render() {
   }
 
   if (route) {
+
+    // Check authentication
+    if (route.auth && await isAuthenticated() === false) {
+      window.location.hash = '#/not-authenticated';
+      return;
+    }
+
     fetch(route.view)
       .then(response => response.text())
       .then(html => {
@@ -40,6 +55,16 @@ function render() {
       });
   } else {
     document.getElementById('app').innerHTML = '404 Page Not Found';
+  }
+
+  // Update login/logout button
+  const logButton = document.getElementById('log_btn');
+  if (await isAuthenticated()) {
+    logButton.innerHTML = 'Logout';
+    logButton.href = '#/logout';
+  } else {
+    logButton.innerHTML = 'Login';
+    logButton.href = '#/login';
   }
 }
 

@@ -2,46 +2,43 @@ import TournamentsService from "../../services/tournaments.service.js";
 import { getRouteParams } from '../../router/routeParams.js';
 
 async function init() {
-  try {
-    const id = getRouteParams().id;
-    const tournament = await TournamentsService.getDetail(id);
-    const container = document.getElementById('tournaments_detail_container');
+  const id = getRouteParams().id;
+  const response = await TournamentsService.getDetail(id);
+  const tournament = await response.json();
 
-    // Create a table
-    const tableData = [
-      { label: 'ID', value: tournament.id },
-      { label: 'Name', value: tournament.name },
-      { label: 'Points to win', value: tournament.points_to_win },
-      { label: 'Status', value: tournament.status },
-      { label: 'Created at', value: tournament.created_at },
-      { label: 'Started at', value: tournament.started_at },
-      { label: 'Finished at', value: tournament.finished_at },
-    ];
+  const container = document.getElementById('tournaments_detail_container');
 
-    const table = document.createElement('table');
-    table.className = 'table table-striped table-bordered table-hover';
-    container.appendChild(table);
+  // Create a table
+  const tableData = [
+    { label: 'ID', value: tournament.id },
+    { label: 'Name', value: tournament.name },
+    { label: 'Points to win', value: tournament.points_to_win },
+    { label: 'Status', value: tournament.status },
+    { label: 'Created at', value: tournament.created_at },
+    { label: 'Started at', value: tournament.started_at },
+    { label: 'Finished at', value: tournament.finished_at },
+  ];
 
-    // Create the table body
-    const tbody = document.createElement('tbody');
-    table.appendChild(tbody);
+  const table = document.createElement('table');
+  table.className = 'table table-striped table-bordered table-hover';
+  container.appendChild(table);
 
-    tableData.forEach(item => {
-      const tr = document.createElement('tr');
-      const tdLabel = document.createElement('td');
-      tdLabel.textContent = item.label;
-      tdLabel.className = 'fw-bold';
-      const tdValue = document.createElement('td');
-      tdValue.textContent = item.value;
+  // Create the table body
+  const tbody = document.createElement('tbody');
+  table.appendChild(tbody);
 
-      tr.appendChild(tdLabel);
-      tr.appendChild(tdValue);
-      tbody.appendChild(tr);
-    });
+  tableData.forEach(item => {
+    const tr = document.createElement('tr');
+    const tdLabel = document.createElement('td');
+    tdLabel.textContent = item.label;
+    tdLabel.className = 'fw-bold';
+    const tdValue = document.createElement('td');
+    tdValue.textContent = item.value;
 
-  } catch (error) {
-    console.error('Error:', error);
-  }
+    tr.appendChild(tdLabel);
+    tr.appendChild(tdValue);
+    tbody.appendChild(tr);
+  });
 }
 
 init();

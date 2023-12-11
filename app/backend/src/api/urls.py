@@ -1,6 +1,11 @@
-from django.urls import re_path
+from django.urls import path
 from . import views
 from rest_framework import permissions
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView
+)
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 import os
@@ -17,11 +22,15 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    re_path(r'^$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    re_path(r'^hello', views.HelloWorld.as_view(), name='hello'),
-    re_path(r'^tournaments/list', views.TournamentList.as_view(), name='tournament-list'),
-    re_path(r'^tournaments/detail/(?P<pk>[0-9]+)', views.TournamentDetail.as_view(), name='tournament-detail'),
-    re_path(r'^tournaments/create', views.TournamentCreate.as_view(), name='tournament-create'),
-    re_path(r'^tournaments/update/(?P<pk>[0-9]+)', views.TournamentUpdate.as_view(), name='tournament-update'),
-    re_path(r'^tournaments/delete/(?P<pk>[0-9]+)', views.TournamentDelete.as_view(), name='tournament-delete'),
+    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('auth/token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('auth/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+    path('auth/token/verify', TokenVerifyView.as_view(), name='token_verify'),
+    path('auth/register', views.RegisterView.as_view(), name='register'),
+    path('hello', views.HelloWorldView.as_view(), name='hello'),
+    path('tournaments/list', views.TournamentListView.as_view(), name='tournament-list'),
+    path('tournaments/detail/<int:pk>', views.TournamentDetailView.as_view(), name='tournament-detail'),
+    path('tournaments/create', views.TournamentCreateView.as_view(), name='tournament-create'),
+    path('tournaments/update/<int:pk>', views.TournamentUpdateView.as_view(), name='tournament-update'),
+    path('tournaments/delete/<int:pk>', views.TournamentDeleteView.as_view(), name='tournament-delete'),
 ]
