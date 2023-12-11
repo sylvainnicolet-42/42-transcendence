@@ -30,8 +30,7 @@ async function render() {
   if (route) {
 
     // Check authentication
-    const auth = await isAuthenticated();
-    if (route.auth && !auth) {
+    if (route.auth && await isAuthenticated() === false) {
       window.location.hash = '#/not-authenticated';
       return;
     }

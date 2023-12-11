@@ -40,6 +40,10 @@ export default {
   },
   '#/register': {
     view: 'views/auth/register.html',
+    script: 'js/views/auth/register.js',
+  },
+  '#/register-success': {
+    view: 'views/auth/register-success.html',
   },
   '#/profile': {
     view: 'views/profile/detail.html',

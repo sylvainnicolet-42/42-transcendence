@@ -12,7 +12,7 @@ function init() {
     const user = {
       username: jsonData.username,
       password: jsonData.password
-    }
+    };
 
     const response = await AuthService.login(user);
     if (response.ok) {
