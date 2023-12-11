@@ -33,4 +33,14 @@ export default class AuthService {
       body: JSON.stringify({ token }),
     });
   }
+
+  static async refreshToken(refresh) {
+    return await fetch(AUTH_API + 'token/refresh', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ refresh }),
+    });
+  }
 }

@@ -4,7 +4,24 @@ export async function isAuthenticated() {
   const token = localStorage.getItem('access_token');
   if (token) {
     const response = await AuthService.verifyToken(token);
-    return response.ok;
+    if (response.ok) {
+      return true;
+    } else {
+      // Try with refresh token
+      const refreshToken = localStorage.getItem('refresh_token');
+      if (refreshToken) {
+        const response = await AuthService.refreshToken(refreshToken);
+        if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem('access_token', data.access);
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    }
   } else {
     return false;
   }
