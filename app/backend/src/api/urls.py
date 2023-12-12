@@ -7,7 +7,7 @@ from .views.tournament import (
     TournamentUpdateView,
     TournamentDeleteView
 )
-from .views.account import RegisterView
+from .views.account import RegisterView, AccountListView, AccountDetailView
 from rest_framework import permissions
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -40,7 +40,8 @@ urlpatterns = [
     path('/auth/register', RegisterView.as_view(), name='auth_register'),
 
     # Accounts
-    # path('/accounts/detail/<int:pk>', views.AccountDetailView.as_view(), name='account-detail'),
+    path('/accounts/list', AccountListView.as_view(), name='account-list'),
+    path('/accounts/detail/<int:pk>', AccountDetailView.as_view(), name='account-detail'),
 
     # Tournaments
     path('/tournaments/list', TournamentListView.as_view(), name='tournament-list'),
