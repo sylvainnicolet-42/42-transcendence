@@ -49,7 +49,10 @@ export default {
   '#/register-success': {
     view: 'views/auth/register-success.html',
   },
-  '#/profile': {
+  '#/not-authenticated': {
+    view: 'views/auth/not-authenticated.html',
+  },
+  '#/profile/detail': {
     view: 'views/profile/detail.html',
     auth: true
   },
@@ -57,7 +60,4 @@ export default {
     view: 'views/profile/edit.html',
     auth: true
   },
-  '#/not-authenticated': {
-    view: 'views/auth/not-authenticated.html',
-  }
 }
