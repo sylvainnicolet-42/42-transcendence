@@ -27,7 +27,7 @@ function init() {
     } else {
       const data = await response.json();
       if (data.username) {
-        spanError.innerText = 'name: ' + data.username;
+        spanError.innerText = 'username: ' + data.username;
       }
       if (data.password) {
         spanError.innerText = 'password: ' + data.password;
