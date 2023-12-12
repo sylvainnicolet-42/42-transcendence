@@ -2,6 +2,10 @@ export default {
   '/': {
     view: 'views/homepage.html'
   },
+  '#/hello': {
+    view: 'views/hello/hello.html',
+    script: 'js/views/hello/hello.js',
+  },
   '#/player-vs-player': {
     view: 'views/player-vs-player.html',
     script: 'js/views/local-pong.js',
