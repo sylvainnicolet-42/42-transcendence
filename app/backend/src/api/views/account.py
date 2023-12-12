@@ -31,6 +31,17 @@ class AccountDetailView(RetrieveAPIView):
     def get_object(self):
         return self.request.user
 
+class AccountUpdateView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def put(self, request):
+        user = request.user
+        serializer = UserDetailSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class AccountDeleteView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -38,13 +49,3 @@ class AccountDeleteView(APIView):
         user = request.user
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-# class AccountUpdateView(generics.UpdateAPIView):
-#     permission_classes = [permissions.IsAuthenticated]
-#     queryset = User.objects.all()
-#     serializer_class = UserDetailSerializer
-
-# class AccountDeleteView(generics.DestroyAPIView):
-#     permission_classes = [permissions.IsAuthenticated]
-#     queryset = User.objects.all()
-#     serializer_class = UserDetailSerializer

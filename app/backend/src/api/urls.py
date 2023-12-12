@@ -10,6 +10,7 @@ from .views.tournament import (
 from .views.account import (
     RegisterView,
     AccountDetailView,
+    AccountUpdateView,
     AccountDeleteView
 )
 from rest_framework import permissions
@@ -45,13 +46,8 @@ urlpatterns = [
 
     # Accounts
     path('/accounts/detail', AccountDetailView.as_view(), name='profile-detail'),
+    path('/accounts/update', AccountUpdateView.as_view(), name='profile-update'),
     path('/accounts/delete', AccountDeleteView.as_view(), name='profile-delete'),
-
-    # # Accounts
-    # path('/accounts/list', AccountListView.as_view(), name='account-list'),
-    # path('/accounts/detail/<int:pk>', AccountDetailView.as_view(), name='account-detail'),
-    # path('/accounts/update/<int:pk>', AccountUpdateView.as_view(), name='account-update'),
-    # path('/accounts/delete/<int:pk>', AccountDeleteView.as_view(), name='account-delete'),
 
     # Tournaments
     path('/tournaments/list', TournamentListView.as_view(), name='tournament-list'),
