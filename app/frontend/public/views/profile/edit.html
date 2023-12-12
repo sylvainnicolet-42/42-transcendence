@@ -6,29 +6,61 @@
     <div class="col-lg-6 offset-lg-3">
       <div class="card text-start">
         <div class="card-body">
-          <form>
+          <form id="edit-profile-form">
             <div class="mb-3">
               <label for="username" class="form-label mb-1">Username</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label mb-1">Password</label>
-              <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-            </div>
-            <div class="mb-3">
-              <label for="confirm_password" class="form-label mb-1">Confirm Password</label>
-              <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+              <label for="bio" class="form-label mb-1">Bio</label>
+              <textarea class="form-control" id="bio" name="bio" placeholder="Bio" rows="3" style="resize: none;"></textarea>
             </div>
             <div class="mb-3">
               <label for="image_profile" class="form-label mb-1">Image Profile</label>
               <input type="file" class="form-control" id="image_profile" name="image_profile" placeholder="Image Profile">
             </div>
             <div class="d-grid d-md-flex justify-content-md-end">
-              <button type="button" class="btn btn-secondary me-md-2" onclick="window.history.back()">Back</button>
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            <span id="form-error" class="text-danger"></span>
+          </form>
+        </div>
+      </div>
+
+      <div class="card text-start mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Change Password</h5>
+          <form class="mt-3">
+            <div class="mb-3">
+              <label for="old_password" class="form-label mb-1">Old Password</label>
+              <input type="password" class="form-control" id="old_password" name="old_password" placeholder="Old Password" required>
+            </div>
+            <div class="mb-3">
+              <label for="new_password" class="form-label mb-1">New Password</label>
+              <input type="password" class="form-control" id="new_password" name="new_password" placeholder="New Password" required>
+            </div>
+            <div class="mb-3">
+              <label for="confirm_new_password" class="form-label mb-1">Confirm New Password</label>
+              <input type="password" class="form-control" id="confirm_new_password" name="confirm_new_password" placeholder="Confirm New Password" required>
+            </div>
+            <div class="d-grid d-md-flex justify-content-md-end">
+              <button type="submit" class="btn btn-primary">Change Password</button>
             </div>
           </form>
         </div>
+      </div>
+
+      <div class="card text-start mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Danger Zone</h5>
+          <div class="d-grid d-md-flex justify-content-md-start mt-3">
+            <button id="delete-account-button" type="button" class="btn btn-danger">Delete Account</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-grid d-md-flex justify-content-md-end mt-3">
+        <button type="button" class="btn btn-secondary" onclick="window.history.back()">Back</button>
       </div>
     </div>
   </div>

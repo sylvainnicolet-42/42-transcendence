@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Tournament(models.Model):
+    objects = models.Manager()
     name = models.CharField(max_length=100)
     points_to_win = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(10)]

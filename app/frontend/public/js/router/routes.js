@@ -49,15 +49,17 @@ export default {
   '#/register-success': {
     view: 'views/auth/register-success.html',
   },
-  '#/profile': {
+  '#/not-authenticated': {
+    view: 'views/auth/not-authenticated.html',
+  },
+  '#/profile/detail': {
     view: 'views/profile/detail.html',
+    script: 'js/views/profile/detail.js',
     auth: true
   },
   '#/profile/edit': {
     view: 'views/profile/edit.html',
+    script: 'js/views/profile/edit.js',
     auth: true
   },
-  '#/not-authenticated': {
-    view: 'views/auth/not-authenticated.html',
-  }
 }

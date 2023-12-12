@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from .models import Tournament
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.Serializer):
@@ -19,7 +18,7 @@ class UserSerializer(serializers.Serializer):
         )
         return user
 
-class TournamentSerializer(serializers.ModelSerializer):
+class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tournament
-        fields = '__all__'
+        model = User
+        fields = ('username', 'id')

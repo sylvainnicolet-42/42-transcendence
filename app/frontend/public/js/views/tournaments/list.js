@@ -1,16 +1,15 @@
 import TournamentsService from "../../services/tournaments.service.js";
 
-function deleteTournament(id) {
+async function deleteTournament(id) {
   const confirmed = confirm('Are you sure you want to delete this tournament?');
 
   if (confirmed) {
-    TournamentsService.delete(id)
-      .then(() => {
-        window.location.reload();
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    const response = await TournamentsService.delete(id);
+    if (response.ok) {
+      window.location.reload();
+    } else {
+      console.log('Error deleting tournament');
+    }
   }
 
 }
