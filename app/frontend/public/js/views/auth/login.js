@@ -6,7 +6,7 @@ function init() {
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const spanError = document.getElementById('login-error');
+    const spanError = document.getElementById('form-error');
     const formData = new FormData(form);
     const jsonData = Object.fromEntries(formData.entries());
     const user = {
