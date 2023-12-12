@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework import permissions, status, generics
 from ..serializers.user import UserSerializer, UserDetailSerializer
@@ -22,10 +23,13 @@ class AccountListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserDetailSerializer
 
-class AccountDetailView(generics.RetrieveAPIView):
+class AccountDetailView(RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserDetailSerializer
+
+    def get_object(self):
+        return self.request.user
 
 class AccountUpdateView(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]

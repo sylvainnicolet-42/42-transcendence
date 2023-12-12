@@ -46,10 +46,13 @@ urlpatterns = [
     path('/auth/register', RegisterView.as_view(), name='auth_register'),
 
     # Accounts
-    path('/accounts/list', AccountListView.as_view(), name='account-list'),
-    path('/accounts/detail/<int:pk>', AccountDetailView.as_view(), name='account-detail'),
-    path('/accounts/update/<int:pk>', AccountUpdateView.as_view(), name='account-update'),
-    path('/accounts/delete/<int:pk>', AccountDeleteView.as_view(), name='account-delete'),
+    path('/accounts/detail', AccountDetailView.as_view(), name='profile-detail'),
+
+    # # Accounts
+    # path('/accounts/list', AccountListView.as_view(), name='account-list'),
+    # path('/accounts/detail/<int:pk>', AccountDetailView.as_view(), name='account-detail'),
+    # path('/accounts/update/<int:pk>', AccountUpdateView.as_view(), name='account-update'),
+    # path('/accounts/delete/<int:pk>', AccountDeleteView.as_view(), name='account-delete'),
 
     # Tournaments
     path('/tournaments/list', TournamentListView.as_view(), name='tournament-list'),

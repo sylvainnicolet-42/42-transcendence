@@ -54,6 +54,7 @@ export default {
   },
   '#/profile/detail': {
     view: 'views/profile/detail.html',
+    script: 'js/views/profile/detail.js',
     auth: true
   },
   '#/profile/edit': {
