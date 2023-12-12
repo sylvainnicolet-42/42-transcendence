@@ -2,14 +2,11 @@ import TournamentsService from "../../services/tournaments.service.js";
 import { getRouteParams } from '../../router/routeParams.js';
 
 async function loadTournamentData(form) {
-  try {
-    const id = getRouteParams().id;
-    const tournament = await TournamentsService.getDetail(id);
-    form.elements.name.value = tournament.name;
-    form.elements.points_to_win.value = tournament.points_to_win;
-  } catch (error) {
-    console.error('Error loading tournament data:', error);
-  }
+  const id = getRouteParams().id;
+  const response = await TournamentsService.getDetail(id);
+  const tournament = await response.json();
+  form.elements.name.value = tournament.name;
+  form.elements.points_to_win.value = tournament.points_to_win;
 }
 
 async function updateTournament(form) {
