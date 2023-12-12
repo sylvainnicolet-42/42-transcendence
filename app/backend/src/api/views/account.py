@@ -31,12 +31,20 @@ class AccountDetailView(RetrieveAPIView):
     def get_object(self):
         return self.request.user
 
-class AccountUpdateView(generics.UpdateAPIView):
+class AccountDeleteView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    queryset = User.objects.all()
-    serializer_class = UserDetailSerializer
 
-class AccountDeleteView(generics.DestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated]
-    queryset = User.objects.all()
-    serializer_class = UserDetailSerializer
+    def delete(self, request):
+        user = request.user
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+# class AccountUpdateView(generics.UpdateAPIView):
+#     permission_classes = [permissions.IsAuthenticated]
+#     queryset = User.objects.all()
+#     serializer_class = UserDetailSerializer
+
+# class AccountDeleteView(generics.DestroyAPIView):
+#     permission_classes = [permissions.IsAuthenticated]
+#     queryset = User.objects.all()
+#     serializer_class = UserDetailSerializer

@@ -23,11 +23,21 @@
               <label for="image_profile" class="form-label mb-1">Image Profile</label>
               <input type="file" class="form-control" id="image_profile" name="image_profile" placeholder="Image Profile">
             </div>
-            <div class="d-grid d-md-flex justify-content-md-end">
-              <button type="button" class="btn btn-secondary me-md-2" onclick="window.history.back()">Back</button>
-              <button type="submit" class="btn btn-primary">Update</button>
+            <div class="d-grid d-md-flex justify-content-md-end gap-2">
+              <button type="button" class="btn btn-secondary" onclick="window.history.back()">Back</button>
+              <button type="submit" class="btn btn-primary order-first order-md-last">Save</button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 offset-lg-3 mt-3">
+      <div class="card text-start">
+        <div class="card-body">
+          <h5 class="card-title">Danger Zone</h5>
+          <p class="card-text">Delete your account</p>
+          <button id="delete-account-button" type="button" class="btn btn-danger">Delete</button>
         </div>
       </div>
     </div>

@@ -59,6 +59,7 @@ export default {
   },
   '#/profile/edit': {
     view: 'views/profile/edit.html',
+    script: 'js/views/profile/edit.js',
     auth: true
   },
 }

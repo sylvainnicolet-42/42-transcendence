@@ -12,4 +12,13 @@ export default class AuthService {
       },
     });
   }
+
+  static async delete() {
+    return await fetch(ACCOUNT_API + 'delete', {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
+  }
 }
