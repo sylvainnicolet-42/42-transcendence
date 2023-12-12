@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, generics, status
-from .models import Tournament
+from .models.tournament import Tournament
 from .serializers import TournamentSerializer, UserSerializer
 from drf_yasg.utils import swagger_auto_schema
 
