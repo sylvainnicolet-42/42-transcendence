@@ -2,7 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, generics, status
 from .models.tournament import Tournament
-from .serializers import TournamentSerializer, UserSerializer
+from .serializers.tournament import TournamentSerializer
+from .serializers.user import UserSerializer
 from drf_yasg.utils import swagger_auto_schema
 
 class RegisterView(APIView):

@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from .models.tournament import Tournament
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.Serializer):
@@ -18,8 +17,3 @@ class UserSerializer(serializers.Serializer):
             password=validated_data['password']
         )
         return user
-
-class TournamentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tournament
-        fields = '__all__'
