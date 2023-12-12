@@ -9,6 +9,7 @@ export default class TournamentsService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
       },
       body: JSON.stringify(tournament),
     });
@@ -19,22 +20,36 @@ export default class TournamentsService {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
       },
       body: JSON.stringify(tournament),
     });
   }
 
   static async getDetail(id) {
-    return await fetch(TOURNAMENTS_API + 'detail/' + id);
+    return await fetch(TOURNAMENTS_API + 'detail/' + id, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
   }
 
   static async delete(id) {
     return await fetch(TOURNAMENTS_API + 'delete/' + id, {
       method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
     });
   }
 
   static async getList() {
-    return await fetch(TOURNAMENTS_API + 'list');
+    return await fetch(TOURNAMENTS_API + 'list', {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
   }
 }

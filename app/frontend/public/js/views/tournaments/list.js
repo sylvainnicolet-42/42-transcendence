@@ -17,6 +17,10 @@ function deleteTournament(id) {
 
 async function init() {
   const response = await TournamentsService.getList();
+  if (!response.ok) {
+    window.location.href = '#/login';
+    return;
+  }
   const list = await response.json();
 
   const container = document.getElementById('tournaments_list_container');
