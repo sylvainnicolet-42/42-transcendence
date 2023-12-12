@@ -56,9 +56,6 @@ export default {
     view: 'views/chat.html',
     script: 'js/views/chat/chat.js',
   },
-    view: 'views/profile/edit.html',
-    auth: true
-  },
   '#/not-authenticated': {
     view: 'views/auth/not-authenticated.html',
   }
