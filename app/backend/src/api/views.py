@@ -20,7 +20,7 @@ class RegisterView(APIView):
 class HelloWorldView(APIView):
     permission_classes = [permissions.AllowAny]
     def get(self, request):
-        return Response({"message": "Hello World!"})
+        return Response({"message": "Hello World from Django!"})
 
 class TournamentListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]

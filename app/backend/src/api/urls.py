@@ -17,7 +17,7 @@ schema_view = get_schema_view(
         description="Welcome to the Transcendence API documentation."
     ),
     url=os.getenv("BACKEND_API_URL"),
-    public=False,
+    public=True,
     permission_classes=[permissions.AllowAny],
 )
 
