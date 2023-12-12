@@ -4,6 +4,10 @@ import { getRouteParams } from '../../router/routeParams.js';
 async function init() {
   const id = getRouteParams().id;
   const response = await TournamentsService.getDetail(id);
+  if (!response.ok) {
+    window.location.href = '#/login';
+    return;
+  }
   const tournament = await response.json();
 
   const container = document.getElementById('tournaments_detail_container');

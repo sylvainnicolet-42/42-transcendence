@@ -20,24 +20,29 @@ class RegisterView(APIView):
 class HelloWorldView(APIView):
     permission_classes = [permissions.AllowAny]
     def get(self, request):
-        return Response({"message": "Hello World!"})
+        return Response({"message": "Hello World from Django!"})
 
 class TournamentListView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
 
 class TournamentDetailView(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
 
 class TournamentCreateView(generics.CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
 
 class TournamentUpdateView(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
 
 class TournamentDeleteView(generics.DestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
