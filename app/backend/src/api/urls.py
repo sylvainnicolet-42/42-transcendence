@@ -7,12 +7,12 @@ from .views.tournament import (
     TournamentUpdateView,
     TournamentDeleteView
 )
-# from .views.account import (
-#     RegisterView,
-#     AccountDetailView,
-#     AccountUpdateView,
-#     AccountDeleteView
-# )
+from .views.account import (
+    RegisterView,
+    AccountDetailView,
+    AccountUpdateView,
+    AccountDeleteView
+)
 from rest_framework import permissions
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -42,12 +42,12 @@ urlpatterns = [
     path('/auth/token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('/auth/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('/auth/token/verify', TokenVerifyView.as_view(), name='token_verify'),
-    # path('/auth/register', RegisterView.as_view(), name='auth_register'),
+    path('/auth/register', RegisterView.as_view(), name='auth_register'),
 
     # Accounts
-    # path('/accounts/detail', AccountDetailView.as_view(), name='profile-detail'),
-    # path('/accounts/update', AccountUpdateView.as_view(), name='profile-update'),
-    # path('/accounts/delete', AccountDeleteView.as_view(), name='profile-delete'),
+    path('/accounts/detail', AccountDetailView.as_view(), name='profile-detail'),
+    path('/accounts/update', AccountUpdateView.as_view(), name='profile-update'),
+    path('/accounts/delete', AccountDeleteView.as_view(), name='profile-delete'),
 
     # Tournaments
     path('/tournaments/list', TournamentListView.as_view(), name='tournament-list'),

@@ -9,7 +9,9 @@ async function init() {
   const user = await response.json();
 
   const username = document.getElementById('profile_username');
+  const bio = document.getElementById('profile_bio');
   username.innerHTML = user.username;
+  bio.innerHTML = user.bio;
 }
 
 init();

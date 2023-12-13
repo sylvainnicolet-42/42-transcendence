@@ -41,6 +41,9 @@ function updateAccount() {
       if (data.username) {
         spanError.innerText = 'username: ' + data.username[0];
       }
+      if (data.bio) {
+        spanError.innerText = 'bio: ' + data.bio[0];
+      }
     }
   });
 
