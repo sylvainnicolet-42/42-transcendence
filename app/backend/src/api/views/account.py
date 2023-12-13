@@ -38,6 +38,9 @@ class AccountUpdateView(APIView):
         user = request.user
         serializer = AccountDetailSerializer(user, data=request.data)
         if serializer.is_valid():
+            if 'avatar' in request.data:
+                user.avatar.delete()
+                user.avatar = request.data['avatar']
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
