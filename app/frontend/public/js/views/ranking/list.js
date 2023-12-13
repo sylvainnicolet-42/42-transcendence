@@ -77,7 +77,7 @@ async function init() {
 
     // Detail button
     const aDetail = document.createElement('a');
-    aDetail.href = '#/'; // TODO: Add the player id
+    aDetail.href = '#/players/detail/' + player.id;
     aDetail.className = 'btn btn-primary';
     aDetail.textContent = 'Detail';
     tdActions.appendChild(aDetail);

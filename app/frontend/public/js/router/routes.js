@@ -48,6 +48,13 @@ export default {
     auth: true
   },
 
+  // Players
+  '#/players/detail/:id': {
+    view: 'views/players/detail.html',
+    script: 'js/views/players/detail.js',
+    auth: true
+  },
+
   // Chat
   '#/chat': {
     view: 'views/chat/chat.html',

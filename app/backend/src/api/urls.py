@@ -7,7 +7,10 @@ from .views.account import (
     AccountDeleteView,
     AccountDeleteAvatarView
 )
-from .views.player import PlayerListView
+from .views.player import (
+    PlayerListView,
+    PlayerDetailView
+)
 from .views.tournament import (
     TournamentListView,
     TournamentDetailView,
@@ -54,6 +57,7 @@ urlpatterns = [
 
     # Players
     path('/players/list', PlayerListView.as_view(), name='player-list'),
+    path('/players/detail/<int:pk>', PlayerDetailView.as_view(), name='player-detail'),
 
     # Tournaments
     path('/tournaments/list', TournamentListView.as_view(), name='tournament-list'),

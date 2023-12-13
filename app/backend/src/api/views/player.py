@@ -6,3 +6,9 @@ class PlayerListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = Account.objects.all()
     serializer_class = AccountDetailSerializer
+
+class PlayerDetailView(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Account.objects.all()
+    serializer_class = AccountDetailSerializer
+    lookup_field = 'pk'

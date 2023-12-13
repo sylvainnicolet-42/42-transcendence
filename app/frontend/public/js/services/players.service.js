@@ -12,4 +12,13 @@ export default class PlayersService {
       },
     });
   }
+
+  static async getDetail(id) {
+    return await fetch(PLAYERS_API + 'detail/' + id, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
+  }
 }
