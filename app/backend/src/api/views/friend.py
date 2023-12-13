@@ -41,5 +41,55 @@ class FriendRequestView(generics.GenericAPIView):
         request.user.friend_requests.remove(user)
         return Response(self.get_serializer(request.user).data, status=status.HTTP_200_OK)
 
+class FriendRequestSentView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Account.objects.all()
+    serializer_class = AccountDetailSerializer
+
     def get(self, request):
+        return Response(self.get_serializer(request.user.friend_requests.all(), many=True).data, status=status.HTTP_200_OK)
+
+class FriendRequestReceivedView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Account.objects.all()
+    serializer_class = AccountDetailSerializer
+
+    def get(self, request):
+        return Response(self.get_serializer(request.user.related_friend_requests.all(), many=True).data, status=status.HTTP_200_OK)
+
+class FriendRequestAcceptView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Account.objects.all()
+    serializer_class = AccountDetailSerializer
+
+    def post(self, request):
+        # Check if user exists
+        try:
+            user = Account.objects.get(username=request.data['username'])
+        except Account.DoesNotExist:
+            raise serializers.ValidationError({'username': 'User does not exist.'})
+        # Check if user already sent a friend request
+        if not request.user.related_friend_requests.filter(username=user.username).exists():
+            raise serializers.ValidationError({'username': 'Friend request not received.'})
+        # Accept friend request
+        request.user.friend_requests.remove(user)
+        request.user.friends.add(user)
+        return Response(self.get_serializer(request.user).data, status=status.HTTP_200_OK)
+
+class FriendRequestRejectView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Account.objects.all()
+    serializer_class = AccountDetailSerializer
+
+    def post(self, request):
+        # Check if user exists
+        try:
+            user = Account.objects.get(username=request.data['username'])
+        except Account.DoesNotExist:
+            raise serializers.ValidationError({'username': 'User does not exist.'})
+        # Check if user already sent a friend request
+        if not request.user.related_friend_requests.filter(username=user.username).exists():
+            raise serializers.ValidationError({'username': 'Friend request not received.'})
+        # Reject friend request
+        request.user.friend_requests.remove(user)
         return Response(self.get_serializer(request.user).data, status=status.HTTP_200_OK)

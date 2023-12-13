@@ -57,8 +57,8 @@ async function init() {
     img.src = player.avatar || 'https://www.gravatar.com/avatar/';
     img.alt = player.username;
     img.className = 'rounded-circle';
-    img.width = 50;
-    img.height = 50;
+    img.width = 30;
+    img.height = 30;
 
     // Player username
     const tdUsername = document.createElement('td');

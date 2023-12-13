@@ -8,7 +8,11 @@ from .views.account import (
     AccountDeleteAvatarView
 )
 from .views.friend import (
-    FriendRequestView
+    FriendRequestView,
+    FriendRequestSentView,
+    FriendRequestReceivedView,
+    FriendRequestAcceptView,
+    FriendRequestRejectView
 )
 from .views.player import (
     PlayerListView,
@@ -60,6 +64,10 @@ urlpatterns = [
 
     # Friends
     path('/friend-request', FriendRequestView.as_view(), name='friend-request'),
+    path('/friend-request/sent', FriendRequestSentView.as_view(), name='friend-request-sent'),
+    path('/friend-request/received', FriendRequestReceivedView.as_view(), name='friend-request-received'),
+    path('/friend-request/accept', FriendRequestAcceptView.as_view(), name='friend-request-accept'),
+    path('/friend-request/reject', FriendRequestRejectView.as_view(), name='friend-request-reject'),
 
     # Players
     path('/players/list', PlayerListView.as_view(), name='player-list'),
