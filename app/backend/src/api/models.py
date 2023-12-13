@@ -4,6 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Account(AbstractUser):
     bio = models.TextField(max_length=200, blank=True)
+    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
 
 class Tournament(models.Model):
     objects = models.Manager()

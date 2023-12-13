@@ -14,13 +14,18 @@ export default class AuthService {
   }
 
   static async update(data) {
+    const formData = new FormData();
+
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
+
     return await fetch(ACCOUNT_API + 'update', {
       method: 'PUT',
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
-        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: formData,
     });
   }
 

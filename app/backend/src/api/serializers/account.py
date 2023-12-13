@@ -22,4 +22,9 @@ class AccountSerializer(serializers.Serializer):
 class AccountDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ('id', 'username', 'bio')
+        fields = (
+            'id',
+            'username',
+            'bio',
+            'avatar'
+        )

@@ -31,6 +31,7 @@ function updateAccount() {
     const account = {
       username: jsonData.username,
       bio: jsonData.bio,
+      avatar: jsonData.avatar,
     };
 
     const response = await AccountsService.update(account);
@@ -43,6 +44,9 @@ function updateAccount() {
       }
       if (data.bio) {
         spanError.innerText = 'bio: ' + data.bio[0];
+      }
+      if (data.avatar) {
+        spanError.innerText = 'avatar: ' + data.avatar[0];
       }
     }
   });
@@ -58,7 +62,27 @@ async function loadAccountData() {
   const account = await response.json();
   document.getElementById('username').value = account.username;
   document.getElementById('bio').value = account.bio || '';
+  if (account.avatar) {
+    const avatarContainer = document.getElementById('preview-avatar-container');
 
+    // Show avatar
+    const avatar = document.createElement('img');
+    avatar.id = 'preview_avatar';
+    avatar.alt = 'avatar';
+    avatar.className = 'rounded-circle d-block img-thumbnail';
+    avatar.width = '80';
+    avatar.height = '80';
+    avatar.src = account.avatar;
+    avatarContainer.appendChild(avatar);
+
+    // Show remove button
+    const removeAvatarButton = document.createElement('button');
+    removeAvatarButton.id = 'remove-avatar-button';
+    removeAvatarButton.type = 'button';
+    removeAvatarButton.className = 'btn btn-danger ms-3';
+    removeAvatarButton.innerText = 'Remove';
+    avatarContainer.appendChild(removeAvatarButton);
+  }
 }
 
 async function init() {

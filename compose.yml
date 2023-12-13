@@ -35,6 +35,7 @@ services:
       DB_NAME: ${DB_NAME}
       FRONTEND_URL: ${FRONTEND_URL}
       BACKEND_API_URL: ${BACKEND_API_URL}
+      MEDIA_URL: ${MEDIA_URL}
     depends_on:
       db:
         condition: service_healthy
