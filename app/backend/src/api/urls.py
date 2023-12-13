@@ -1,18 +1,19 @@
 from django.urls import path
 from .views.hello import HelloWorldView
-from .views.tournament import (
-    TournamentListView,
-    TournamentDetailView,
-    TournamentCreateView,
-    TournamentUpdateView,
-    TournamentDeleteView
-)
 from .views.account import (
     RegisterView,
     AccountDetailView,
     AccountUpdateView,
     AccountDeleteView,
     AccountDeleteAvatarView
+)
+from .views.player import PlayerListView
+from .views.tournament import (
+    TournamentListView,
+    TournamentDetailView,
+    TournamentCreateView,
+    TournamentUpdateView,
+    TournamentDeleteView
 )
 from rest_framework import permissions
 from rest_framework_simplejwt.views import (
@@ -50,6 +51,9 @@ urlpatterns = [
     path('/accounts/update', AccountUpdateView.as_view(), name='profile-update'),
     path('/accounts/delete', AccountDeleteView.as_view(), name='profile-delete'),
     path('/accounts/delete-avatar', AccountDeleteAvatarView.as_view(), name='profile-delete-avatar'),
+
+    # Players
+    path('/players/list', PlayerListView.as_view(), name='player-list'),
 
     # Tournaments
     path('/tournaments/list', TournamentListView.as_view(), name='tournament-list'),

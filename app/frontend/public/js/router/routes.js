@@ -43,8 +43,9 @@ export default {
 
   // Ranking
   '#/ranking': {
-    view: 'views/ranking/ranking.html',
-    script: 'js/views/ranking/ranking.js',
+    view: 'views/ranking/list.html',
+    script: 'js/views/ranking/list.js',
+    auth: true
   },
 
   // Chat
