@@ -48,7 +48,7 @@ function updateAccount() {
         spanError.innerText = 'bio: ' + data.bio[0];
       }
       if (data.avatar) {
-        spanError.innerText = 'avatar: ' + data.avatar[0];
+        spanError.innerText = 'avatar: ' + data.avatar;
       }
     }
   });

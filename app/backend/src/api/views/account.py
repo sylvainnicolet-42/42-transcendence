@@ -38,7 +38,10 @@ class AccountUpdateView(APIView):
         user = request.user
         serializer = AccountDetailSerializer(user, data=request.data)
         if serializer.is_valid():
+            max_size = 1024 * 1024 # 1MB
             if 'avatar' in request.data:
+                if request.data['avatar'].size > max_size:
+                    return Response({'avatar': 'File too large. Max size is 1MB.'}, status=status.HTTP_400_BAD_REQUEST)
                 user.avatar.delete()
                 user.avatar = request.data['avatar']
             serializer.save()
