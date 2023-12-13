@@ -26,5 +26,8 @@ class AccountDetailSerializer(serializers.ModelSerializer):
             'id',
             'username',
             'bio',
-            'avatar'
+            'avatar',
+            'friends',
+            'friend_requests',
+            'blocked_users'
         )

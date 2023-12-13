@@ -7,6 +7,9 @@ from .views.account import (
     AccountDeleteView,
     AccountDeleteAvatarView
 )
+from .views.friend import (
+    FriendRequestView
+)
 from .views.player import (
     PlayerListView,
     PlayerDetailView
@@ -54,6 +57,9 @@ urlpatterns = [
     path('/accounts/update', AccountUpdateView.as_view(), name='profile-update'),
     path('/accounts/delete', AccountDeleteView.as_view(), name='profile-delete'),
     path('/accounts/delete-avatar', AccountDeleteAvatarView.as_view(), name='profile-delete-avatar'),
+
+    # Friends
+    path('/friend-request', FriendRequestView.as_view(), name='friend-request'),
 
     # Players
     path('/players/list', PlayerListView.as_view(), name='player-list'),
