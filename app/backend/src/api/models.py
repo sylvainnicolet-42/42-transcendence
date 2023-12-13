@@ -1,5 +1,9 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+
+class Account(AbstractUser):
+    bio = models.TextField(max_length=200, blank=True)
 
 class Tournament(models.Model):
     objects = models.Manager()

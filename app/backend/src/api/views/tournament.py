@@ -1,5 +1,5 @@
 from rest_framework import permissions, generics
-from ..models.tournament import Tournament
+from ..models import Tournament
 from ..serializers.tournament import TournamentSerializer
 
 class TournamentListView(generics.ListAPIView):
