@@ -37,4 +37,13 @@ export default class AuthService {
       },
     });
   }
+
+  static async deleteAvatar() {
+    return await fetch(ACCOUNT_API + 'delete-avatar', {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
+  }
 }

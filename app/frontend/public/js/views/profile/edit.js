@@ -72,8 +72,8 @@ async function loadAccountData() {
     avatar.id = 'preview_avatar';
     avatar.alt = 'avatar';
     avatar.className = 'rounded-circle d-block img-thumbnail';
-    avatar.width = '80';
-    avatar.height = '80';
+    avatar.width = 80;
+    avatar.height = 80;
     avatar.src = account.avatar;
     avatarContainer.appendChild(avatar);
 
@@ -84,6 +84,20 @@ async function loadAccountData() {
     removeAvatarButton.className = 'btn btn-danger ms-3';
     removeAvatarButton.innerText = 'Remove';
     avatarContainer.appendChild(removeAvatarButton);
+
+    // Remove avatar
+    removeAvatarButton.addEventListener('click', async () => {
+      const confirmed = confirm('Are you sure you want to remove your avatar?');
+      if (confirmed) {
+        const response = await AccountsService.deleteAvatar();
+
+        if (response.ok) {
+          window.location.reload();
+        } else {
+          console.log('Error deleting avatar');
+        }
+      }
+    });
   }
 }
 

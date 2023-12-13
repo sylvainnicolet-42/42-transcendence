@@ -11,7 +11,8 @@ from .views.account import (
     RegisterView,
     AccountDetailView,
     AccountUpdateView,
-    AccountDeleteView
+    AccountDeleteView,
+    AccountDeleteAvatarView
 )
 from rest_framework import permissions
 from rest_framework_simplejwt.views import (
@@ -48,6 +49,7 @@ urlpatterns = [
     path('/accounts/detail', AccountDetailView.as_view(), name='profile-detail'),
     path('/accounts/update', AccountUpdateView.as_view(), name='profile-update'),
     path('/accounts/delete', AccountDeleteView.as_view(), name='profile-delete'),
+    path('/accounts/delete-avatar', AccountDeleteAvatarView.as_view(), name='profile-delete-avatar'),
 
     # Tournaments
     path('/tournaments/list', TournamentListView.as_view(), name='tournament-list'),

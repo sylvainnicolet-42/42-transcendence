@@ -52,3 +52,13 @@ class AccountDeleteView(APIView):
         user = request.user
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class AccountDeleteAvatarView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user
+        if user.avatar:
+            user.avatar.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_404_NOT_FOUND)
