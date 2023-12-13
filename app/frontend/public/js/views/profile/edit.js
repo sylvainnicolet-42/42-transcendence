@@ -31,8 +31,10 @@ function updateAccount() {
     const account = {
       username: jsonData.username,
       bio: jsonData.bio,
-      avatar: jsonData.avatar,
     };
+    if (jsonData.avatar.size > 0) {
+      account.avatar = jsonData.avatar;
+    }
 
     const response = await AccountsService.update(account);
     if (response.ok) {
