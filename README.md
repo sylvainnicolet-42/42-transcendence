@@ -105,3 +105,15 @@ Apply migrations:
 ```bash
 python manage.py migrate
 ```
+
+Create fixtures from api:
+
+```bash
+python manage.py dumpdata api > data.json
+```
+
+Load fixtures:
+
+```bash
+python manage.py loaddata data.json
+```
