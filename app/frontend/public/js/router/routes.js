@@ -18,6 +18,8 @@ export default {
     view: 'views/player-vs-online.html',
     auth: true
   },
+
+  // Tournaments
   '#/tournaments/create': {
     view: 'views/tournaments/create.html',
     script: 'js/views/tournaments/create.js',
@@ -38,6 +40,28 @@ export default {
     script: 'js/views/tournaments/list.js',
     auth: true
   },
+
+  // Ranking
+  '#/ranking': {
+    view: 'views/ranking/ranking.html',
+    script: 'js/views/ranking/ranking.js',
+  },
+
+  // Chat
+  '#/chat': {
+    view: 'views/chat/chat.html',
+    script: 'js/views/chat/chat.js',
+    auth: true
+  },
+
+  // Friends
+  '#/friends': {
+    view: 'views/friends/friends.html',
+    script: 'js/views/friends/friends.js',
+    auth: true
+  },
+
+  // Authentication
   '#/login': {
     view: 'views/auth/login.html',
     script: 'js/views/auth/login.js',
@@ -52,6 +76,8 @@ export default {
   '#/not-authenticated': {
     view: 'views/auth/not-authenticated.html',
   },
+
+  // Profile
   '#/profile/detail': {
     view: 'views/profile/detail.html',
     script: 'js/views/profile/detail.js',
