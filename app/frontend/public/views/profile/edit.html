@@ -6,7 +6,7 @@
     <div class="col-lg-6 offset-lg-3">
       <div class="card text-start">
         <div class="card-body">
-          <form id="edit-profile-form">
+          <form id="edit-profile-form" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="username" class="form-label mb-1">Username</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
@@ -16,9 +16,10 @@
               <textarea class="form-control" id="bio" name="bio" placeholder="Bio" rows="3" style="resize: none;"></textarea>
             </div>
             <div class="mb-3">
-              <label for="image_profile" class="form-label mb-1">Image Profile</label>
-              <input type="file" class="form-control" id="image_profile" name="image_profile" placeholder="Image Profile">
+              <label for="avatar" class="form-label mb-1">Avatar</label>
+              <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*">
             </div>
+            <div id="preview-avatar-container" class="mb-3 d-flex align-items-center"></div>
             <div class="d-grid d-md-flex justify-content-md-end">
               <button type="submit" class="btn btn-primary">Save</button>
             </div>

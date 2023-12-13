@@ -8,8 +8,11 @@ async function init() {
   }
   const user = await response.json();
 
+  const avatar = document.getElementById('profile_avatar');
   const username = document.getElementById('profile_username');
   const bio = document.getElementById('profile_bio');
+
+  avatar.src = user.avatar || 'https://www.gravatar.com/avatar/';
   username.innerHTML = user.username;
   bio.innerHTML = user.bio;
 }

@@ -38,6 +38,12 @@ class AccountUpdateView(APIView):
         user = request.user
         serializer = AccountDetailSerializer(user, data=request.data)
         if serializer.is_valid():
+            max_size = 1024 * 1024 # 1MB
+            if 'avatar' in request.data:
+                if request.data['avatar'].size > max_size:
+                    return Response({'avatar': 'File too large. Max size is 1MB.'}, status=status.HTTP_400_BAD_REQUEST)
+                user.avatar.delete()
+                user.avatar = request.data['avatar']
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -49,3 +55,13 @@ class AccountDeleteView(APIView):
         user = request.user
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class AccountDeleteAvatarView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user
+        if user.avatar:
+            user.avatar.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_404_NOT_FOUND)
