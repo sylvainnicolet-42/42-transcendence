@@ -2,16 +2,16 @@ from rest_framework.views import APIView
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework import permissions, status, generics
-from ..serializers.user import UserSerializer, UserDetailSerializer
-from django.contrib.auth.models import User
+from ..serializers.account import AccountSerializer, AccountDetailSerializer
+from ..models import Account
 from drf_yasg.utils import swagger_auto_schema
 
 class RegisterView(APIView):
     permission_classes = [permissions.AllowAny]
 
-    @swagger_auto_schema(request_body=UserSerializer)
+    @swagger_auto_schema(request_body=AccountSerializer)
     def post(self, request):
-        serializer = UserSerializer(data=request.data)
+        serializer = AccountSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             if user:
@@ -20,13 +20,13 @@ class RegisterView(APIView):
 
 class AccountListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    queryset = User.objects.all()
-    serializer_class = UserDetailSerializer
+    queryset = Account.objects.all()
+    serializer_class = AccountDetailSerializer
 
 class AccountDetailView(RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    queryset = User.objects.all()
-    serializer_class = UserDetailSerializer
+    queryset = Account.objects.all()
+    serializer_class = AccountDetailSerializer
 
     def get_object(self):
         return self.request.user
@@ -36,7 +36,7 @@ class AccountUpdateView(APIView):
 
     def put(self, request):
         user = request.user
-        serializer = UserDetailSerializer(user, data=request.data)
+        serializer = AccountDetailSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

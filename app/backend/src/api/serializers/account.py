@@ -1,24 +1,25 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from ..models import Account
 
-class UserSerializer(serializers.Serializer):
+class AccountSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(write_only=True, required=True)
+
     class Meta:
-        model = User
+        model = Account
         fields = ('username', 'password')
 
     def create(self, validated_data):
         # Check if user already exists
-        if User.objects.filter(username=validated_data['username']).exists():
+        if Account.objects.filter(username=validated_data['username']).exists():
             raise serializers.ValidationError({'username': 'Username already exists.'})
-        user = User.objects.create_user(
+        user = Account.objects.create_user(
             username=validated_data['username'],
             password=validated_data['password']
         )
         return user
 
-class UserDetailSerializer(serializers.ModelSerializer):
+class AccountDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('username', 'id')
+        model = Account
+        fields = ('id', 'username', 'bio')

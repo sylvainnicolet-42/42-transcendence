@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'drf_yasg',
-    'api.apps.ApiConfig',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Model is defined in api/models/Account.py
+AUTH_USER_MODEL = 'api.Account'
 
 
 # Internationalization
