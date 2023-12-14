@@ -24,6 +24,21 @@ async function init() {
   }
   const player = await response.json();
 
+  // Check if the user is blocked
+  const isBlockedResponse = UsersService.isBlocked(id);
+  isBlockedResponse.then(isBlocked => {
+    const blockedContainer = document.getElementById('player_block_container');
+    const playerContainer = document.getElementById('player_detail_container');
+    if (isBlocked) {
+      blockedContainer.className = 'alert alert-danger';
+      blockedContainer.innerHTML = 'This user is blocked or you are not allowed to see it';
+      playerContainer.style.display = 'none';
+    } else {
+      blockedContainer.style.display = 'none';
+      playerContainer.style.display = 'block';
+    }
+  });
+
   const avatar = document.getElementById('player_avatar');
   const username = document.getElementById('player_username');
   const bio = document.getElementById('player_bio');

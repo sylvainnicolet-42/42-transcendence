@@ -30,4 +30,17 @@ export default class UsersService {
       },
     });
   }
+
+  static async isBlocked(id) {
+    const response = await this.getBlockedUsers();
+    if (!response.ok) {
+      return response;
+    }
+    const blockedUsers = await response.json();
+
+    id = parseInt(id);
+    const test= blockedUsers.some(user => user.id === id);
+    console.log(test);
+    return test;
+  }
 }
