@@ -68,6 +68,16 @@ export default {
     script: 'js/views/friends/friends.js',
     auth: true
   },
+  '#/friends/requests': {
+    view: 'views/friends/friends.html',
+    script: 'js/views/friends/friends.js',
+    auth: true
+  },
+  '#/friends/search': {
+    view: 'views/friends/friends.html',
+    script: 'js/views/friends/friends.js',
+    auth: true
+  },
 
   // Authentication
   '#/login': {

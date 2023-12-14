@@ -9,6 +9,7 @@ def rename_avatar(instance, filename):
     return 'avatars/' + filename
 
 class Account(AbstractUser):
+    DoesNotExist = None
     bio = models.TextField(max_length=200, blank=True)
     avatar = models.ImageField(upload_to=rename_avatar, null=True, blank=True)
     friends = models.ManyToManyField('self', blank=True, symmetrical=True)

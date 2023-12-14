@@ -9,6 +9,7 @@ from .views.account import (
 )
 from .views.friend import (
     FriendRequestView,
+    FriendRequestDeleteView,
     FriendRequestSentView,
     FriendRequestReceivedView,
     FriendRequestAcceptView,
@@ -63,11 +64,12 @@ urlpatterns = [
     path('/accounts/delete-avatar', AccountDeleteAvatarView.as_view(), name='profile-delete-avatar'),
 
     # Friends
-    path('/friend-request', FriendRequestView.as_view(), name='friend-request'),
-    path('/friend-request/sent', FriendRequestSentView.as_view(), name='friend-request-sent'),
-    path('/friend-request/received', FriendRequestReceivedView.as_view(), name='friend-request-received'),
-    path('/friend-request/accept', FriendRequestAcceptView.as_view(), name='friend-request-accept'),
-    path('/friend-request/reject', FriendRequestRejectView.as_view(), name='friend-request-reject'),
+    path('/friend-requests', FriendRequestView.as_view(), name='friend-request'),
+    path('/friend-requests/delete', FriendRequestDeleteView.as_view(), name='friend-request-delete'),
+    path('/friend-requests/sent', FriendRequestSentView.as_view(), name='friend-request-sent'),
+    path('/friend-requests/received', FriendRequestReceivedView.as_view(), name='friend-request-received'),
+    path('/friend-requests/accept', FriendRequestAcceptView.as_view(), name='friend-request-accept'),
+    path('/friend-requests/reject', FriendRequestRejectView.as_view(), name='friend-request-reject'),
 
     # Players
     path('/players/list', PlayerListView.as_view(), name='player-list'),
