@@ -68,16 +68,22 @@ export default {
     script: 'js/views/friends/friends.js',
     auth: true
   },
-  '#/friends/requests': {
-    view: 'views/friends/friends.html',
-    script: 'js/views/friends/friends.js',
-    auth: true
-  },
   '#/friends/search': {
-    view: 'views/friends/friends.html',
-    script: 'js/views/friends/friends.js',
+    view: 'views/friends/search.html',
+    script: 'js/views/friends/search.js',
     auth: true
   },
+  '#/friends/requests': {
+    view: 'views/friends/requests.html',
+    script: 'js/views/friends/requests.js',
+    auth: true
+  },
+  '#/friends/blocked': {
+    view: 'views/friends/blocked.html',
+    script: 'js/views/friends/blocked.js',
+    auth: true
+  },
+
 
   // Authentication
   '#/login': {
