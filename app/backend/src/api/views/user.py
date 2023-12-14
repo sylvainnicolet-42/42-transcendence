@@ -9,12 +9,20 @@ class UserListView(generics.ListAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountDetailSerializer
 
+class UserSearchView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Account.objects.all()
+    serializer_class = AccountDetailSerializer
+
+    def get_queryset(self):
+        username = self.kwargs['username']
+        return self.queryset.filter(username__icontains=username)
+
 class UserDetailView(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = Account.objects.all()
     serializer_class = AccountDetailSerializer
     lookup_field = 'pk'
-
 
 class UserFriendRequestView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]

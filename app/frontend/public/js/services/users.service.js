@@ -13,6 +13,15 @@ export default class UsersService {
     });
   }
 
+  static async search(username) {
+    return await fetch(USERS_API + 'search/' + username, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
+  }
+
   static async getDetail(id) {
     return await fetch(USERS_API + 'detail/' + id, {
       method: 'GET',

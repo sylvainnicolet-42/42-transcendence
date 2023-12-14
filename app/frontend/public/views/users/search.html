@@ -19,10 +19,12 @@
     </li>
   </ul>
 
-  <div class="input-group mt-4">
-    <input type="text" class="form-control" placeholder="Search for friends" aria-label="Search for friends" aria-describedby="button-search">
-    <button class="btn btn-outline-secondary" type="button" id="button-search">Search</button>
-  </div>
+  <form id="friends_search_form" class="mt-4">
+    <div class="input-group">
+      <input name="search_input" id="search_input"  type="text" class="form-control" placeholder="Search for friends" aria-label="Search for friends" aria-describedby="button-search">
+      <button class="btn btn-outline-secondary" type="submit" id="button-search">Search</button>
+    </div>
+  </form>
 
   <section id="friends_search_container" class="mt-4"></section>
 </div>
