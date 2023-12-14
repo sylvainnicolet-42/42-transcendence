@@ -1,4 +1,3 @@
-import PlayersService from "../../services/players.service.js";
 import { getRouteParams } from '../../router/routeParams.js';
 import UsersService from "../../services/users.service.js";
 
@@ -15,39 +14,52 @@ async function blockUser(id) {
   }
 }
 
+async function addFriend(id) {
+  const confirmed = confirm('Are you sure you want to add this user as a friend?');
+
+  if (confirmed) {
+    const response = await UsersService.addFriend(id);
+    if (response.ok) {
+      window.location.reload();
+    } else {
+      console.log('Error adding friend');
+    }
+  }
+}
+
 async function init() {
   const id = getRouteParams().id;
-  const response = await PlayersService.getDetail(id);
+  const response = await UsersService.getDetail(id);
   if (!response.ok) {
     window.location.href = '#/login';
     return;
   }
-  const player = await response.json();
+  const user = await response.json();
 
   // Check if the user is blocked
   const isBlockedResponse = UsersService.isBlocked(id);
   isBlockedResponse.then(isBlocked => {
-    const blockedContainer = document.getElementById('player_block_container');
-    const playerContainer = document.getElementById('player_detail_container');
+    const blockedContainer = document.getElementById('user_block_container');
+    const userContainer = document.getElementById('user_detail_container');
     if (isBlocked) {
       blockedContainer.className = 'alert alert-danger';
       blockedContainer.innerHTML = 'This user is blocked or you are not allowed to see it';
-      playerContainer.style.display = 'none';
+      userContainer.style.display = 'none';
     } else {
       blockedContainer.style.display = 'none';
-      playerContainer.style.display = 'block';
+      userContainer.style.display = 'block';
     }
   });
 
-  const avatar = document.getElementById('player_avatar');
-  const username = document.getElementById('player_username');
-  const bio = document.getElementById('player_bio');
-  const blockBtnContainer = document.getElementById('player_block_btn');
+  const avatar = document.getElementById('user_avatar');
+  const username = document.getElementById('user_username');
+  const bio = document.getElementById('user_bio');
+  const blockBtnContainer = document.getElementById('user_block_btn');
   blockBtnContainer.className = 'd-grid gap-2 d-md-flex justify-content-md-center';
 
-  avatar.src = player.avatar || 'https://www.gravatar.com/avatar/';
-  username.innerHTML = player.username;
-  bio.innerHTML = player.bio;
+  avatar.src = user.avatar || 'https://www.gravatar.com/avatar/';
+  username.innerHTML = user.username;
+  bio.innerHTML = user.bio;
 
   const addFriendBtn = document.createElement('button');
   addFriendBtn.className = 'btn btn-primary';
@@ -70,7 +82,7 @@ async function init() {
   blockBtn.className = 'btn btn-danger';
   blockBtn.innerHTML = 'Block';
   blockBtn.addEventListener('click', () => {
-    blockUser(player.id);
+    blockUser(user.id);
   });
   blockBtnContainer.appendChild(blockBtn);
 }

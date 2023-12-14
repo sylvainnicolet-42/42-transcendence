@@ -7,22 +7,18 @@ from .views.account import (
     AccountDeleteView,
     AccountDeleteAvatarView
 )
-from .views.friend import (
-    FriendRequestView,
-    FriendRequestDeleteView,
-    FriendRequestSentView,
-    FriendRequestReceivedView,
-    FriendRequestAcceptView,
-    FriendRequestRejectView
-)
 from .views.user import (
+    UserListView,
+    UserDetailView,
+    UserFriendRequestView,
+    UserFriendRequestDeleteView,
+    UserFriendRequestSentView,
+    UserFriendRequestReceivedView,
+    UserFriendRequestAcceptView,
+    UserFriendRequestRejectView,
     UserBlockView,
     UserUnblockView,
     UserBlockListView
-)
-from .views.player import (
-    PlayerListView,
-    PlayerDetailView
 )
 from .views.tournament import (
     TournamentListView,
@@ -68,22 +64,18 @@ urlpatterns = [
     path('/accounts/delete', AccountDeleteView.as_view(), name='profile-delete'),
     path('/accounts/delete-avatar', AccountDeleteAvatarView.as_view(), name='profile-delete-avatar'),
 
-    # Friends
-    path('/friend-requests', FriendRequestView.as_view(), name='friend-request'),
-    path('/friend-requests/delete', FriendRequestDeleteView.as_view(), name='friend-request-delete'),
-    path('/friend-requests/sent', FriendRequestSentView.as_view(), name='friend-request-sent'),
-    path('/friend-requests/received', FriendRequestReceivedView.as_view(), name='friend-request-received'),
-    path('/friend-requests/accept', FriendRequestAcceptView.as_view(), name='friend-request-accept'),
-    path('/friend-requests/reject', FriendRequestRejectView.as_view(), name='friend-request-reject'),
-
     # Users
+    path('/users/list', UserListView.as_view(), name='player-list'),
+    path('/users/detail/<int:pk>', UserDetailView.as_view(), name='player-detail'),
+    path('/users/friend-requests', UserFriendRequestView.as_view(), name='friend-request'),
+    path('/users/friend-requests/delete', UserFriendRequestDeleteView.as_view(), name='friend-request-delete'),
+    path('/users/friend-requests/sent', UserFriendRequestSentView.as_view(), name='friend-request-sent'),
+    path('/users/friend-requests/received', UserFriendRequestReceivedView.as_view(), name='friend-request-received'),
+    path('/users/friend-requests/accept', UserFriendRequestAcceptView.as_view(), name='friend-request-accept'),
+    path('/users/friend-requests/reject', UserFriendRequestRejectView.as_view(), name='friend-request-reject'),
     path('/users/block/<int:pk>', UserBlockView.as_view(), name='user-block'),
     path('/users/unblock/<int:pk>', UserUnblockView.as_view(), name='user-unblock'),
     path('/users/block/list', UserBlockListView.as_view(), name='user-block-list'),
-
-    # Players
-    path('/players/list', PlayerListView.as_view(), name='player-list'),
-    path('/players/detail/<int:pk>', PlayerDetailView.as_view(), name='player-detail'),
 
     # Tournaments
     path('/tournaments/list', TournamentListView.as_view(), name='tournament-list'),

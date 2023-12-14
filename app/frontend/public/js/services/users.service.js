@@ -4,6 +4,33 @@ const USERS_API = config.BACKEND_API_URL + '/users/';
 
 export default class UsersService {
 
+  static async getList() {
+    return await fetch(USERS_API + 'list', {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
+  }
+
+  static async getDetail(id) {
+    return await fetch(USERS_API + 'detail/' + id, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
+  }
+
+  static async friendRequest(id) {
+    return await fetch(USERS_API + 'friend-requests/' + id, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
+  }
+
   static async getBlockedUsers() {
     return await fetch(USERS_API + 'block/list', {
       method: 'GET',
@@ -39,7 +66,7 @@ export default class UsersService {
     const blockedUsers = await response.json();
 
     id = parseInt(id);
-    const test= blockedUsers.some(user => user.id === id);
+    const test = blockedUsers.some(user => user.id === id);
     console.log(test);
     return test;
   }

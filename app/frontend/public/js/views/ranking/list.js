@@ -1,7 +1,7 @@
-import PlayersService from "../../services/players.service.js";
+import UsersService from "../../services/users.service.js";
 
 async function init() {
-  const response = await PlayersService.getList();
+  const response = await UsersService.getList();
   if (!response.ok) {
     window.location.href = '#/login';
     return;
@@ -39,45 +39,45 @@ async function init() {
     tbody.appendChild(tr);
     const td = document.createElement('td');
     td.setAttribute('colspan', '4');
-    td.textContent = 'No players found';
+    td.textContent = 'No users found';
     tr.appendChild(td);
   }
 
-  list.forEach(player => {
+  list.forEach(user => {
     const tr = document.createElement('tr');
     // Align the items vertically
     tr.className = 'align-middle';
     tbody.appendChild(tr);
 
-    // Player avatar
+    // User avatar
     const tdAvatar = document.createElement('td');
     tr.appendChild(tdAvatar);
     const img = document.createElement('img');
     tdAvatar.appendChild(img);
-    img.src = player.avatar || 'https://www.gravatar.com/avatar/';
-    img.alt = player.username;
+    img.src = user.avatar || 'https://www.gravatar.com/avatar/';
+    img.alt = user.username;
     img.className = 'rounded-circle';
     img.width = 30;
     img.height = 30;
 
-    // Player username
+    // User username
     const tdUsername = document.createElement('td');
     tr.appendChild(tdUsername);
-    tdUsername.textContent = player.username;
+    tdUsername.textContent = user.username;
 
-    // Player points
+    // User points
     const tdPoints = document.createElement('td');
     tr.appendChild(tdPoints);
     tdPoints.textContent = 0; // TODO: Add the points
 
-    // Player actions
+    // User actions
     const tdActions = document.createElement('td');
     tdActions.className = 'text-end';
     tr.appendChild(tdActions);
 
     // Detail button
     const aDetail = document.createElement('a');
-    aDetail.href = '#/players/detail/' + player.id;
+    aDetail.href = '#/users/detail/' + user.id;
     aDetail.className = 'btn btn-primary';
     aDetail.textContent = 'Detail';
     tdActions.appendChild(aDetail);

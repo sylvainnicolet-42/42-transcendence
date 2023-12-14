@@ -48,13 +48,6 @@ export default {
     auth: true
   },
 
-  // Players
-  '#/players/detail/:id': {
-    view: 'views/players/detail.html',
-    script: 'js/views/players/detail.js',
-    auth: true
-  },
-
   // Chat
   '#/chat': {
     view: 'views/chat/chat.html',
@@ -63,24 +56,29 @@ export default {
   },
 
   // Friends
-  '#/friends': {
-    view: 'views/friends/friends.html',
-    script: 'js/views/friends/friends.js',
+  '#/users/detail/:id': {
+    view: 'views/users/detail.html',
+    script: 'js/views/users/detail.js',
     auth: true
   },
-  '#/friends/search': {
-    view: 'views/friends/search.html',
-    script: 'js/views/friends/search.js',
+  '#/users/friends': {
+    view: 'views/users/friends.html',
+    script: 'js/views/users/friends.js',
     auth: true
   },
-  '#/friends/requests': {
-    view: 'views/friends/requests.html',
-    script: 'js/views/friends/requests.js',
+  '#/users/search': {
+    view: 'views/users/search.html',
+    script: 'js/views/users/search.js',
     auth: true
   },
-  '#/friends/blocked': {
-    view: 'views/friends/blocked.html',
-    script: 'js/views/friends/blocked.js',
+  '#/users/friends/requests': {
+    view: 'views/users/requests.html',
+    script: 'js/views/users/requests.js',
+    auth: true
+  },
+  '#/users/blocked': {
+    view: 'views/users/blocked.html',
+    script: 'js/views/users/blocked.js',
     auth: true
   },
 
