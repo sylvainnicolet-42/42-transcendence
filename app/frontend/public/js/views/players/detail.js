@@ -28,10 +28,27 @@ async function init() {
   const username = document.getElementById('player_username');
   const bio = document.getElementById('player_bio');
   const blockBtnContainer = document.getElementById('player_block_btn');
+  blockBtnContainer.className = 'd-grid gap-2 d-md-flex justify-content-md-center';
 
   avatar.src = player.avatar || 'https://www.gravatar.com/avatar/';
   username.innerHTML = player.username;
   bio.innerHTML = player.bio;
+
+  const addFriendBtn = document.createElement('button');
+  addFriendBtn.className = 'btn btn-primary';
+  addFriendBtn.innerHTML = 'Add friend';
+  addFriendBtn.addEventListener('click', () => {
+    console.log('Add friend');
+  });
+  blockBtnContainer.appendChild(addFriendBtn);
+
+  const messageBtn = document.createElement('button');
+  messageBtn.className = 'btn btn-primary';
+  messageBtn.innerHTML = 'Message';
+  messageBtn.addEventListener('click', () => {
+    console.log('Message');
+  });
+  blockBtnContainer.appendChild(messageBtn);
 
   // TODO: Block only if it's not the current user
   const blockBtn = document.createElement('button');
