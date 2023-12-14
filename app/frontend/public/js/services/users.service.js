@@ -22,9 +22,27 @@ export default class UsersService {
     });
   }
 
-  static async friendRequest(id) {
+  static async doFriendRequest(id) {
     return await fetch(USERS_API + 'friend-requests/' + id, {
       method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
+  }
+
+  static async getFriendRequestsSent() {
+    return await fetch(USERS_API + 'friend-requests/sent', {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
+  }
+
+  static async getFriendRequestsReceived() {
+    return await fetch(USERS_API + 'friend-requests/received', {
+      method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
       },

@@ -15,15 +15,11 @@ async function blockUser(id) {
 }
 
 async function addFriend(id) {
-  const confirmed = confirm('Are you sure you want to add this user as a friend?');
-
-  if (confirmed) {
-    const response = await UsersService.addFriend(id);
-    if (response.ok) {
-      window.location.reload();
-    } else {
-      console.log('Error adding friend');
-    }
+  const response = await UsersService.doFriendRequest(id);
+  if (response.ok) {
+    window.location.reload();
+  } else {
+    console.log('Error adding friend');
   }
 }
 
@@ -65,7 +61,7 @@ async function init() {
   addFriendBtn.className = 'btn btn-primary';
   addFriendBtn.innerHTML = 'Add friend';
   addFriendBtn.addEventListener('click', () => {
-    console.log('Add friend');
+    addFriend(user.id);
   });
   blockBtnContainer.appendChild(addFriendBtn);
 

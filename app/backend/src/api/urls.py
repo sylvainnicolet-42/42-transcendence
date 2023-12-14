@@ -67,7 +67,7 @@ urlpatterns = [
     # Users
     path('/users/list', UserListView.as_view(), name='player-list'),
     path('/users/detail/<int:pk>', UserDetailView.as_view(), name='player-detail'),
-    path('/users/friend-requests', UserFriendRequestView.as_view(), name='friend-request'),
+    path('/users/friend-requests/<int:pk>', UserFriendRequestView.as_view(), name='friend-request'),
     path('/users/friend-requests/delete', UserFriendRequestDeleteView.as_view(), name='friend-request-delete'),
     path('/users/friend-requests/sent', UserFriendRequestSentView.as_view(), name='friend-request-sent'),
     path('/users/friend-requests/received', UserFriendRequestReceivedView.as_view(), name='friend-request-received'),

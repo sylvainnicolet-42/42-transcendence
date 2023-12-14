@@ -21,10 +21,10 @@ class UserFriendRequestView(generics.GenericAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountDetailSerializer
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         # Check if user exists
         try:
-            user = Account.objects.get(username=request.data['username'])
+            user = Account.objects.get(pk=kwargs['pk'])
         except Account.DoesNotExist:
             raise serializers.ValidationError({'error': 'User does not exist.'})
         # Check if user is not blocked

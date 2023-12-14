@@ -1,7 +1,13 @@
-async function friendRequestReceived() {
-  // TODO: Get the list friend requests received
+import UsersService from "../../services/users.service.js";
 
-  const list = [];
+async function friendRequestReceived() {
+  const response = await UsersService.getFriendRequestsReceived();
+  if (!response.ok) {
+    window.location.href = '#/login';
+    return;
+  }
+
+  const list = await response.json();
 
   const container = document.getElementById('friend_requests_received_container');
 
@@ -37,12 +43,62 @@ async function friendRequestReceived() {
     td.textContent = 'No friend requests received';
     tr.appendChild(td);
   }
+
+  list.forEach(user => {
+    const tr = document.createElement('tr');
+    // Align the items vertically
+    tr.className = 'align-middle';
+    tbody.appendChild(tr);
+
+    // User avatar
+    const tdAvatar = document.createElement('td');
+    tr.appendChild(tdAvatar);
+    const img = document.createElement('img');
+    tdAvatar.appendChild(img);
+    img.src = user.avatar || 'https://www.gravatar.com/avatar/';
+    img.alt = user.username;
+    img.className = 'rounded-circle';
+    img.width = 30;
+    img.height = 30;
+
+    // User username
+    const tdUsername = document.createElement('td');
+    tr.appendChild(tdUsername);
+    tdUsername.textContent = user.username;
+
+    // User actions
+    const tdActions = document.createElement('td');
+    tdActions.className = 'd-flex flex-column flex-md-row justify-content-end align-items-end gap-2';
+    tr.appendChild(tdActions);
+
+    // Accept button
+    const aAccept = document.createElement('a');
+    aAccept.className = 'btn btn-success';
+    aAccept.textContent = 'Accept';
+    aAccept.addEventListener('click', () => {
+      console.log('Accept');
+    });
+    tdActions.appendChild(aAccept);
+
+    // Reject button
+    const aReject = document.createElement('a');
+    aReject.className = 'btn btn-danger';
+    aReject.textContent = 'Reject';
+    aReject.addEventListener('click', () => {
+      console.log('Reject');
+    });
+    tdActions.appendChild(aReject);
+  });
 }
 
 async function friendRequestSent() {
-  // TODO: Get the list friend requests sent
+  const response = await UsersService.getFriendRequestsSent();
+  if (!response.ok) {
+    window.location.href = '#/login';
+    return;
+  }
 
-  const list = [];
+  const list = await response.json();
 
   const container = document.getElementById('friend_requests_sent_container');
 
@@ -78,6 +134,43 @@ async function friendRequestSent() {
     td.textContent = 'No friend requests sent';
     tr.appendChild(td);
   }
+
+  list.forEach(user => {
+    const tr = document.createElement('tr');
+    // Align the items vertically
+    tr.className = 'align-middle';
+    tbody.appendChild(tr);
+
+    // User avatar
+    const tdAvatar = document.createElement('td');
+    tr.appendChild(tdAvatar);
+    const img = document.createElement('img');
+    tdAvatar.appendChild(img);
+    img.src = user.avatar || 'https://www.gravatar.com/avatar/';
+    img.alt = user.username;
+    img.className = 'rounded-circle';
+    img.width = 30;
+    img.height = 30;
+
+    // User username
+    const tdUsername = document.createElement('td');
+    tr.appendChild(tdUsername);
+    tdUsername.textContent = user.username;
+
+    // User actions
+    const tdActions = document.createElement('td');
+    tdActions.className = 'text-end';
+    tr.appendChild(tdActions);
+
+    // Delete button
+    const aDelete = document.createElement('a');
+    aDelete.className = 'btn btn-danger';
+    aDelete.textContent = 'Delete';
+    aDelete.addEventListener('click', () => {
+      console.log('Delete');
+    });
+    tdActions.appendChild(aDelete);
+  });
 }
 
 async function init() {

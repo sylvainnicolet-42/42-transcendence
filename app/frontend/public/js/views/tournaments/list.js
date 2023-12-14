@@ -77,20 +77,20 @@ async function init() {
 
     // Tournament actions
     const tdActions = document.createElement('td');
-    tdActions.className = 'd-flex flex-column flex-md-row justify-content-end align-items-end';
+    tdActions.className = 'd-flex flex-column flex-md-row justify-content-end align-items-end gap-2';
     tr.appendChild(tdActions);
 
     // Detail button
     const aDetail = document.createElement('a');
     aDetail.href = '#/tournaments/detail/' + tournament.id;
-    aDetail.className = 'btn btn-primary me-1 mb-1 mb-md-0';
+    aDetail.className = 'btn btn-primary';
     aDetail.textContent = 'Detail';
     tdActions.appendChild(aDetail);
 
     // Edit button
     const aEdit = document.createElement('a');
     aEdit.href = '#/tournaments/edit/' + tournament.id;
-    aEdit.className = 'btn btn-primary me-1 mb-1 mb-md-0';
+    aEdit.className = 'btn btn-primary';
     aEdit.textContent = 'Edit';
     tdActions.appendChild(aEdit);
 
