@@ -14,7 +14,7 @@ class Account(AbstractUser):
     avatar = models.ImageField(upload_to=rename_avatar, null=True, blank=True)
     friends = models.ManyToManyField('self', blank=True, symmetrical=True)
     friend_requests = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='related_friend_requests')
-    blocked_users = models.ManyToManyField('self', blank=True, symmetrical=True)
+    blocked_users = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='related_blocked_users')
 
 class Tournament(models.Model):
     objects = models.Manager()

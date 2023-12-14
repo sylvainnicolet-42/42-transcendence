@@ -11,7 +11,6 @@ async function deleteTournament(id) {
       console.log('Error deleting tournament');
     }
   }
-
 }
 
 async function init() {

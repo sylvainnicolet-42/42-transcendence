@@ -15,6 +15,11 @@ from .views.friend import (
     FriendRequestAcceptView,
     FriendRequestRejectView
 )
+from .views.user import (
+    UserBlockView,
+    UserUnblockView,
+    UserBlockListView
+)
 from .views.player import (
     PlayerListView,
     PlayerDetailView
@@ -70,6 +75,11 @@ urlpatterns = [
     path('/friend-requests/received', FriendRequestReceivedView.as_view(), name='friend-request-received'),
     path('/friend-requests/accept', FriendRequestAcceptView.as_view(), name='friend-request-accept'),
     path('/friend-requests/reject', FriendRequestRejectView.as_view(), name='friend-request-reject'),
+
+    # Users
+    path('/users/block/<int:pk>', UserBlockView.as_view(), name='user-block'),
+    path('/users/unblock/<int:pk>', UserUnblockView.as_view(), name='user-unblock'),
+    path('/users/block/list', UserBlockListView.as_view(), name='user-block-list'),
 
     # Players
     path('/players/list', PlayerListView.as_view(), name='player-list'),
