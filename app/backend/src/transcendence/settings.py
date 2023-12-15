@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_yasg',
     'api',
+    'chat',
 ]
 
 MIDDLEWARE = [

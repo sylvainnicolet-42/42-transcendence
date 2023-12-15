@@ -6,4 +6,5 @@ urlpatterns = [
     path('', redirect_to_api),
     path('admin', admin.site.urls),
     path('api', include('api.urls')),
+    path('chat', include('chat.urls')),
 ]
