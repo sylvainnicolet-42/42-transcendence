@@ -6,7 +6,7 @@ function init() {
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const spanError = document.getElementById('register-error');
+    const spanError = document.getElementById('form-error');
     const formData = new FormData(form);
     const jsonData = Object.fromEntries(formData.entries());
     const user = {
@@ -26,7 +26,12 @@ function init() {
       window.location.href = '#/register-success';
     } else {
       const data = await response.json();
-      spanError.innerText = data.detail;
+      if (data.username) {
+        spanError.innerText = 'username: ' + data.username;
+      }
+      if (data.password) {
+        spanError.innerText = 'password: ' + data.password;
+      }
     }
   });
 }

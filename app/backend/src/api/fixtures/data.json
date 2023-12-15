@@ -1,0 +1,62 @@
+[
+  {
+    "model": "api.account",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$4Y0V7NR9mOa9TwEYG0EOgo$sexAI17vt6EUnKvaZ1jbVDLStkwUOoT728p+HCSh8VI=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "caca",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-12-13T10:39:49.646Z",
+      "bio": "Salut les gars",
+      "avatar": "avatars/d87ed5ff-6b86-4bf0-89cb-218b4e615021.jpg",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "api.account",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$WsTMq3hh47zPUOzFFMm0jf$zN4ShI83tTt4ywomAKIWHLXT3ppHbBTs8uVZa6wXh6o=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "pipi",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-12-13T10:56:17.624Z",
+      "bio": "",
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "api.account",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$PyoeemDYeXvTkOKb7b2nCT$XmVM0HxfN16Avjdxlk+JXyp+Kv3zh0it+JaGiTN/qig=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "cucu",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-12-13T15:37:48.207Z",
+      "bio": "",
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

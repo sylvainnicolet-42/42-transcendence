@@ -18,6 +18,8 @@ export default {
     view: 'views/player-vs-online.html',
     auth: true
   },
+
+  // Tournaments
   '#/tournaments/create': {
     view: 'views/tournaments/create.html',
     script: 'js/views/tournaments/create.js',
@@ -38,6 +40,36 @@ export default {
     script: 'js/views/tournaments/list.js',
     auth: true
   },
+
+  // Ranking
+  '#/ranking': {
+    view: 'views/ranking/list.html',
+    script: 'js/views/ranking/list.js',
+    auth: true
+  },
+
+  // Players
+  '#/players/detail/:id': {
+    view: 'views/players/detail.html',
+    script: 'js/views/players/detail.js',
+    auth: true
+  },
+
+  // Chat
+  '#/chat': {
+    view: 'views/chat/chat.html',
+    script: 'js/views/chat/chat.js',
+    auth: true
+  },
+
+  // Friends
+  '#/friends': {
+    view: 'views/friends/friends.html',
+    script: 'js/views/friends/friends.js',
+    auth: true
+  },
+
+  // Authentication
   '#/login': {
     view: 'views/auth/login.html',
     script: 'js/views/auth/login.js',
@@ -49,12 +81,20 @@ export default {
   '#/register-success': {
     view: 'views/auth/register-success.html',
   },
-  '#/profile': {
+  '#/not-authenticated': {
+    view: 'views/auth/not-authenticated.html',
+  },
+
+  // Profile
+  '#/profile/detail': {
     view: 'views/profile/detail.html',
+    script: 'js/views/profile/detail.js',
     auth: true
   },
   '#/profile/edit': {
-    view: 'views/auth/edit-profile.html',
+    view: 'views/profile/edit.html',
+    script: 'js/views/profile/edit.js',
+    auth: true
   },
   '#/chat': {
     view: 'views/chat.html',

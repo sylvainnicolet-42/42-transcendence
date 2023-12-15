@@ -20,3 +20,6 @@ docker-frontend:
 
 docker-backend:
 	docker exec -it transcendence_backend bash
+
+docker-backend-restart:
+	docker restart transcendence_backend
