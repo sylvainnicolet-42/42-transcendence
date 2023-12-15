@@ -166,8 +166,14 @@ async function friendRequestSent() {
     const aDelete = document.createElement('a');
     aDelete.className = 'btn btn-danger';
     aDelete.textContent = 'Delete';
-    aDelete.addEventListener('click', () => {
-      console.log('Delete');
+    aDelete.addEventListener('click', async () => {
+      console.log(user.id);
+      const response = await UsersService.deleteFriendRequest(user.id);
+      if (!response.ok) {
+        console.log('Error deleting friend request sent');
+        return;
+      }
+      window.location.reload();
     });
     tdActions.appendChild(aDelete);
   });

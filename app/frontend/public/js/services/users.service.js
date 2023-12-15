@@ -40,6 +40,15 @@ export default class UsersService {
     });
   }
 
+  static async deleteFriendRequest(id) {
+    return await fetch(USERS_API + 'friend-requests/delete/' + id, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
+  }
+
   static async getFriendRequestsSent() {
     return await fetch(USERS_API + 'friend-requests/sent', {
       method: 'GET',

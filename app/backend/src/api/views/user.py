@@ -56,10 +56,10 @@ class UserFriendRequestDeleteView(generics.GenericAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountDetailSerializer
 
-    def delete(self, request):
+    def delete(self, request, *args, **kwargs):
         # Check if user exists
         try:
-            user = Account.objects.get(username=request.data['username'])
+            user = Account.objects.get(pk=kwargs['pk'])
         except Account.DoesNotExist:
             raise serializers.ValidationError({'username': 'User does not exist.'})
         # Check if user already sent a friend request
